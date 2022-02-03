@@ -11,6 +11,9 @@ namespace ChildcareScouter.Data.Entities
     {
         Married =1,
         Single,
+        Seperated,
+        Widowed,
+        Divorced,
 
     }
     public class Staff : Person
@@ -19,7 +22,18 @@ namespace ChildcareScouter.Data.Entities
         public int ID { get; set; }
 
         [Required]
-        public int AgeNumber { get; set; }
+        public bool AgeNumber 
+        { 
+            get
+            {
+                if(Age == 18 || Age > 18)
+                {
+
+                    return AgeNumber;
+                }
+                return false;
+            } 
+        }
 
         [Required]
         public MaritalStatus MaritalStatus { get; set; }
@@ -28,7 +42,7 @@ namespace ChildcareScouter.Data.Entities
         public bool IsVolunteer { get; set; }
 
         [Required]
-        public bool HasDependents { get; set; }
+        public bool HasDependent { get; set; }
 
         [Required]
         public int NumberOfDependent { get; set; }

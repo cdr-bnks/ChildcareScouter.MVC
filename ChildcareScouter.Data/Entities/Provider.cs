@@ -9,6 +9,13 @@ namespace ChildcareScouter.Data.Entities
 {
     public enum TypeOfProvider
     {
+        FamilyCare = 1,
+        Nanny,
+        Manny,
+        BabySitters,
+        Teacher,
+        Counseler,
+        SpecailNeeds
 
     }
     public class Provider : Person
@@ -34,8 +41,18 @@ namespace ChildcareScouter.Data.Entities
         [Required]
         public bool IsCertified { get; set; }
 
-        public int AgeNumber { get; set; }
+        public bool AgeNumber 
+        {
+            get 
+            {
+                if(Age == 16 || Age > 16)
+                {
+                    return AgeNumber;
+                }
 
+                return false;
+            }
 
+        }
     }
 }

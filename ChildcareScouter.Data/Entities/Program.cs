@@ -11,17 +11,17 @@ namespace ChildcareScouter.Data.Entities
     {
         Rural = 1,
         Urban,
-        Suberbs
-    } 
-   public class Program
+        Suburbs
+    }
+    public class Program
     {
         [Key]
         public int ID { get; set; }
         [Required]
         public string Address { get; set; }
-        
+
         [Required]
-        public TypeOfRegion RegionType  {  get; set; }
+        public TypeOfRegion Region { get; set; }
 
         [Required]
         public string County { get; set; }
@@ -33,7 +33,7 @@ namespace ChildcareScouter.Data.Entities
         public double Price { get; set; }
 
         [Required]
-        public DateTime BusinessHours { get; set; }
+        public DateTime BusinessHour { get; set; }
         public string Policy { get; set; }
     }
 }
