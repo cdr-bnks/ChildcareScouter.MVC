@@ -49,7 +49,7 @@ Table 3: Child : Person
 
 Optional:
 
-Additional Tables:  [Careers], [Curriculums],[Enrollment], [Reviews], [Allergen Grid], [Child(Persons)], [Work(Persons)]
+Additional Tables:  [Careers], [Curriculums],[Enrollment], [Reviews], [Allergen Grid], [Child(Persons)], [Staff(Persons)]
 
  
 
