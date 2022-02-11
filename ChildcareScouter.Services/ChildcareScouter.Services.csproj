@@ -57,9 +57,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CareProviderServices\" />
     <Folder Include="ChildServices\" />
-    <Folder Include="ProgramServices\" />
-    <Folder Include="ProviderServices\" />
+    <Folder Include="CompanyServices\" />
+    <Folder Include="EmlpoyeeServices\" />
+    <Folder Include="LicensedServices\" />
+    <Folder Include="ParentServices\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

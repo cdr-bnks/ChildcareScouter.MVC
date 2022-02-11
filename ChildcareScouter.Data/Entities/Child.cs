@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,29 +23,49 @@ namespace ChildcareScouter.Data.Entities
     public class Child : Person
     {
         [Key]
-        public int ID { get; set; }
+        public int ChildID { get; set; }
+
+       [ForeignKey(nameof(Parent))]
+        public int ParentID { get; set; }
+        public virtual Parent Parent  { get; set; }
+
 
         [Required]
         public string ChildNeeds { get; set; }
-        [Required]
-        public bool AgeNumber
-        {
-            get
-            {
-                if (Age < 12)
-                {
-                    return AgeNumber;
-                }
-                return false;
-            }
-
-        }
-
-        [Required]
-        public string About { get; set; }
 
         [Required]
         public FoodAllergens FoodAllergens { get; set; }
 
+    }
+
+    public enum FoodAllergies
+    {
+        Wheat = 1,
+        Peanut,
+        Shellfish,
+        Soy,
+        Egg,
+        Milk,
+        TreeNut
+
+
+    }
+    public class Child1 : Person
+    {
+        [Key]
+        public int Child1ID { get; set; }
+
+        public virtual ICollection<CareProvider> ListOfProviders { get; set; }
+
+        public Child1()
+        {
+            ListOfProviders = new HashSet<CareProvider>();
+        }
+
+        [Required]
+        public string ChildNeeds { get; set; }
+
+        [Required]
+        public FoodAllergies FoodAllergies { get; set; }
     }
 }

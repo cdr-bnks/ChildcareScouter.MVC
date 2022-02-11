@@ -54,12 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CareProviderModel\CareProviderListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ChildModel\" />
-    <Folder Include="PrgramModel\" />
-    <Folder Include="ProviderModel\" />
+    <Folder Include="CompanyModel\" />
+    <Folder Include="EmployeeModel\" />
+    <Folder Include="LicensedModel\" />
+    <Folder Include="ParentModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
