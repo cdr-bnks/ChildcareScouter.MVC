@@ -2,29 +2,26 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChildcareScouter.Data.Entities
 {
-    public class CareProvider
+    public class Careprovider
     {
         [Key]
-        public int CareProviderID { get; set; }
+        public int CareproviderID { get; set; }
 
         [ForeignKey(nameof(Company))]
         public int CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
         public virtual ICollection<Employee> ListOfEmployees { get; set; }
-        public virtual ICollection<Child1> ChildrenEnrolled { get; set; }
+        public virtual ICollection<Child> ChildrenEnrolled { get; set; }
 
 
-        public CareProvider()
+        public Careprovider()
         {
             ListOfEmployees = new HashSet<Employee>();
-            ChildrenEnrolled = new HashSet<Child1>();
+            ChildrenEnrolled = new HashSet<Child>();
         }
 
         public virtual Licensed Licensed { get; set; }
@@ -34,12 +31,18 @@ namespace ChildcareScouter.Data.Entities
         public string ProviderName { get; set; }
 
         [Required]
-        public string ProviderTitle{ get; set; }
+        public string ProviderTitle { get; set; }
 
         [Required]
         public string ContactInfo { get; set; }
 
         [Required]
-        public  bool FullTime { get; set; }
+        public bool FullTime { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        [Required]
+        public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

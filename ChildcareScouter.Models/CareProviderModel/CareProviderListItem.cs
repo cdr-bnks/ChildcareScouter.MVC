@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChildcareScouter.Models.CareProviderModel
+namespace ChildcareScouter.Models.CareproviderModel
 {
-    public class CareProviderListItem
+    public class CareproviderListItem
     {
-        public int CareProviderID { get; set; }
+        public int CompanyID { get; set; }
+
+        [Display(Name ="Providers")]
+        public int CareproviderID { get; set; }
 
         [Display(Name = "Provider Name")]
         public string ProviderName { get; set; }
@@ -19,7 +22,5 @@ namespace ChildcareScouter.Models.CareProviderModel
 
         [Display(Name = "Contact Info")]
         public string ContactInfo { get; set; }
-
-        public bool FullTime { get; set; }
     }
 }

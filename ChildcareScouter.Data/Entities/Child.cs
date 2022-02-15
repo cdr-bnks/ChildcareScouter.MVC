@@ -11,12 +11,15 @@ namespace ChildcareScouter.Data.Entities
     public enum FoodAllergens
     {
         Wheat = 1,
+        Gluten,
         Peanut,
         Shellfish,
+        Fish,
         Soy,
         Egg,
-        Milk,
-        TreeNut
+        Diary,
+        TreeNut,
+        Sesame
 
 
     }
@@ -29,6 +32,13 @@ namespace ChildcareScouter.Data.Entities
         public int ParentID { get; set; }
         public virtual Parent Parent  { get; set; }
 
+        public virtual ICollection<Careprovider> ListOfCareProviders { get; set; }
+
+        public Child()
+        {
+            ListOfCareProviders = new HashSet<Careprovider>();
+        }
+
 
         [Required]
         public string ChildNeeds { get; set; }
@@ -36,9 +46,14 @@ namespace ChildcareScouter.Data.Entities
         [Required]
         public FoodAllergens FoodAllergens { get; set; }
 
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        [Required]
+        public DateTimeOffset? ModifiedUTC { get; set; }
     }
 
-    public enum FoodAllergies
+   /* public enum FoodAllergies
     {
         Wheat = 1,
         Peanut,
@@ -67,5 +82,5 @@ namespace ChildcareScouter.Data.Entities
 
         [Required]
         public FoodAllergies FoodAllergies { get; set; }
-    }
+    }*/
 }

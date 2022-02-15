@@ -34,12 +34,12 @@ namespace ChildcareScouter.Data
         }
 
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CareProvider> CareProviders { get; set; }
+        public DbSet<Careprovider> CareproviderID { get; set; }
         public DbSet<Child> Children { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Licensed> Licenses { get; set; }
-        public DbSet<Child1> Children1 { get; set; }
+        //public DbSet<Review> Reviews { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

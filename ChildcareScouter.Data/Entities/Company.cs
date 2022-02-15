@@ -23,5 +23,11 @@ namespace ChildcareScouter.Data.Entities
 
        
         public string Policy { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        [Required]
+        public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChildcareScouter.Models.CareProviderModel.CareProviderListItem>
+﻿@model IEnumerable<ChildcareScouter.Models.CareproviderModel.CareproviderListItem>
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div class=" alert alert-success fade in" role="alert">
+    @ViewBag.SaveResult
+    <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CareProviderID)
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareproviderID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProviderName)
@@ -23,16 +32,16 @@
         <th>
             @Html.DisplayNameFor(model => model.ContactInfo)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FullTime)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CareProviderID)
+            @Html.DisplayFor(modelItem => item.CompanyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareproviderID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProviderName)
@@ -44,12 +53,9 @@
             @Html.DisplayFor(modelItem => item.ContactInfo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FullTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new {  iD=item.CareproviderID  }) |
+            @Html.ActionLink("Details", "Details", new {  iD=item.CareproviderID }) |
+            @Html.ActionLink("Delete", "Delete", new {  iD=item.CareproviderID })
         </td>
     </tr>
 }

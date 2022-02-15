@@ -13,6 +13,8 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int ParentID { get; set; }
 
+        //public Guid OwnerID { get; set; }
+
         [ForeignKey(nameof(Company))]
         public int CompanyID { get; set; }
         public virtual Company Company { get; set; }
@@ -22,5 +24,11 @@ namespace ChildcareScouter.Data.Entities
 
         [Required]
         public string Email { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        [Required]
+        public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

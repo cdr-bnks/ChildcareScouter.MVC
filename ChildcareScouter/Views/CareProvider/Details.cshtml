@@ -1,0 +1,82 @@
+﻿@model ChildcareScouter.Models.CareproviderModel.CareproviderDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CareproviderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CareproviderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareproviderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProviderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProviderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProviderTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProviderTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUTC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  iD = Model.CareproviderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

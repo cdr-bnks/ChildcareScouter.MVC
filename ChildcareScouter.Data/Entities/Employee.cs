@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +22,15 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int EmployeeID { get; set; }
 
-        public virtual ICollection<CareProvider> ListOfPositions { get; set; }
+        //public Guid OwnerID { get; set; }
+
+        public virtual ICollection<Careprovider> ListOfPositions { get; set; }
 
         public Employee()
         {
-            ListOfPositions = new HashSet<CareProvider>();
+            ListOfPositions = new HashSet<Careprovider>();
         }
+
 
         [Required]
         public MaritalStatus MaritalStatus { get; set; }
@@ -39,5 +43,11 @@ namespace ChildcareScouter.Data.Entities
 
         [Required]
         public double  Salary { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        [Required]
+        public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace ChildcareScouter.Data.Entities
         [Required]
         public string IdentifyAs { get; set; }
         
-        [Required]
+        
         public int Age { get; set; }
         
         [Required]

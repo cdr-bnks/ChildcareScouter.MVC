@@ -10,10 +10,10 @@ namespace ChildcareScouter.Data.Entities
 {
    public class Licensed
     {
-        [ForeignKey(nameof(CareProvider))]
+        [ForeignKey(nameof(CareproviderID))]
         public int LicensedID { get; set; }
       
-        public virtual CareProvider CareProvider { get; set; }
+        public virtual Careprovider CareproviderID { get; set; }
 
         public string CertificateName { get; set; }
         public bool Certified { get; set; }
@@ -23,5 +23,8 @@ namespace ChildcareScouter.Data.Entities
         public bool Inspection { get; set; }
         public bool StateRegistered { get; set; }
         public DateTime DateRequired { get; set; }
+
+        //public DateTimeOffset CreatedUTC { get; set; }
+        //public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }
