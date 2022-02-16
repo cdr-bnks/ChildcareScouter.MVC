@@ -32,34 +32,33 @@ namespace ChildcareScouter.Services.Services
             }
         }
 
-        public bool AddChildToCareprovider( int childID, int careproviderID)
+        public bool AddChildToCareprovider(int providerID, int childID, Child childModel, Careprovider provModel)
         {
             using (var ctx = new ApplicationDbContext())
             {
-               /* var careproviderProcured = ctx.CareproviderID.SelectMany(care => new Careprovider()
-                {
-                    CareproviderID = care.CareproviderID,
-                    ChildrenEnrolled = care.ChildrenEnrolled
-                });*/
+                var providerProcured = ctx.CareproviderID.SelectMany(care => care.ChildrenEnrolled.Where(prov => prov.ChildID == providerID)).ToHashSet();
 
-                var careproviderProcured = ctx.CareproviderID.Single(care => care.CareproviderID == careproviderID);
-                var childProcured = ctx.Children.Single(c => c.ChildID == childID);
+                var childProcured = ctx.Children.SelectMany(c => c.ListOfCareProviders.Where(cp => cp.CompanyID == childID)).ToHashSet();
 
-                careproviderProcured.ChildrenEnrolled.Add(childProcured);
+                providerProcured.Add(childModel);
 
+                childProcured.Add(provModel);
+                
                 return ctx.SaveChanges() == 2;
             }
         }
 
-        public bool AddEmployeeToCareprovider(int employeeID, int careproviderID)
+        public bool AddEmployeeToCareprovider(int employeeID, int careproviderID, Employee empModel, Careprovider provModel)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var employeeProcured = ctx.Employees.Single(emp => emp.EmployeeID == employeeID);
+                var employeeProcured = ctx.Employees.SelectMany(emp => emp.ListOfPositions.Where(e => e.CareproviderID == employeeID)).ToHashSet();
                 
-                var careproviderProcured = ctx.CareproviderID.Single(care => care.CareproviderID == careproviderID);
+                var providerProcured = ctx.CareproviderID.SelectMany(care => care.ListOfEmployees.Where(prov => prov.EmployeeID == careproviderID)).ToHashSet();
                 
-                careproviderProcured.ListOfEmployees.Add(employeeProcured);
+                employeeProcured.Add(provModel);
+
+                providerProcured.Add(empModel);
                 
                 return ctx.SaveChanges() == 2;
             }
