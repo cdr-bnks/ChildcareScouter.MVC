@@ -12,11 +12,11 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int CompanyID { get; set; }
 
-        //[Required]
-        //public Guid User { get; set; }
-
         [Required]
-        public string User { get; set; }
+        public Guid User { get; set; }
+
+        //[Required]
+        //public string User { get; set; }
 
         [Required]
         public string CompanyName { get; set; }

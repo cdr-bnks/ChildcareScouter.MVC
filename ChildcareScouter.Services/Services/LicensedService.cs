@@ -11,9 +11,9 @@ namespace ChildcareScouter.Services.Services
 {
     public class LicensedService
     {
-        private readonly string _userID;
+        private readonly Guid _userID;
 
-        public LicensedService( string userID)
+        public LicensedService( Guid userID)
         {
             _userID = userID;
         }

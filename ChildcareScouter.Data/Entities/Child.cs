@@ -10,8 +10,8 @@ namespace ChildcareScouter.Data.Entities
 {
     public enum FoodAllergens
     {
-        None =1,
-        Wheat ,
+        None = 1,
+        Wheat,
         Gluten,
         Peanut,
         Shellfish,
@@ -30,9 +30,9 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int ChildID { get; set; }
 
-       [ForeignKey(nameof(Parent))]
+        [ForeignKey(nameof(Parent))]
         public int ParentID { get; set; }
-        public virtual Parent Parent  { get; set; }
+        public virtual Parent Parent { get; set; }
 
         public virtual ICollection<Careprovider> ListOfCareProviders { get; set; }
 
@@ -40,11 +40,11 @@ namespace ChildcareScouter.Data.Entities
         {
             ListOfCareProviders = new HashSet<Careprovider>();
         }
-        //[Required]
-        //public Guid User {get; set;}
-
         [Required]
-        public string User { get; set; }
+        public Guid User { get; set; }
+
+        //[Required]
+        //public string User { get; set; }
 
         [Required]
         public string ChildNeeds { get; set; }

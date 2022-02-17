@@ -14,14 +14,14 @@ namespace ChildcareScouter.Controllers
     {
         private ParentService CreateParentService()
         {
-            var userID = User.Identity.GetUserId();
+            var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ParentService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var userID = User.Identity.GetUserId();
+            var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ParentService(userID);
             var model = svc.GetParents();
             return View(model);

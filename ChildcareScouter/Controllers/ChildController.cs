@@ -1,5 +1,6 @@
 ﻿using ChildcareScouter.Models.ChildModel;
 using ChildcareScouter.Services.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,16 @@ namespace ChildcareScouter.Controllers
     {
         private ChildService CreateChildService()
         {
-            var svc = new ChildService();
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var svc = new ChildService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var svc = new ChildService();
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var svc = new ChildService(userID);
             var model = svc.GetChildren();
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult Index(int providerID)
-        {
-            var svc = new ChildService();
-            var model = svc.GetChildByProviderID(providerID);
             return View(model);
         }
 

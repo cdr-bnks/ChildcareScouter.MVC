@@ -13,10 +13,10 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int ParentID { get; set; }
 
-        //[Required]
-        //public Guid User { get; set; }
         [Required]
-        public string User { get; set; }
+        public Guid User { get; set; }
+        //[Required]
+        //public string User { get; set; }
 
         [ForeignKey(nameof(Company))]
         public int CompanyID { get; set; }

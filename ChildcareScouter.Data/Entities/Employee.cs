@@ -22,11 +22,11 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int EmployeeID { get; set; }
 
-        //[Required]
-        //public Guid User { get; set; }
-
         [Required]
-        public string User { get; set; }
+        public Guid User { get; set; }
+
+        //[Required]
+        //public string User { get; set; }
 
         public virtual ICollection<Careprovider> ListOfPositions { get; set; }
 

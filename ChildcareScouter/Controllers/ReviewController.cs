@@ -13,14 +13,14 @@ namespace ChildcareScouter.Controllers
     {
         private ReviewService CreateReviewService()
         {
-            var userID = User.Identity.GetUserId();
+            var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ReviewService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var userID = User.Identity.GetUserId();
+            var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ReviewService(userID);
             var model = svc.GetReview();
             return View(model);

@@ -11,8 +11,8 @@ namespace ChildcareScouter.Services.Services
 {
     public class ReviewService
     {
-        private readonly string _userID;
-        public ReviewService(string userID)
+        private readonly Guid _userID;
+        public ReviewService(Guid userID)
         {
             _userID = userID;
         }
@@ -46,7 +46,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Reviews.Select(e => new ReviewListItem
+                var query = ctx.Reviews.Where(e => e.User == _userID).Select(e => new ReviewListItem
                 {
                     CarproviderID = e.Careprovider.CareproviderID,
                     ReviewID = e.ReviewID,
@@ -69,7 +69,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == iD);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == iD && e.User == _userID);
 
                 return new ReviewDetail
                 {
@@ -90,7 +90,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID && e.User == _userID);
 
                 entity.CareproviderID = model.CareProviderID;
                 entity.ReviewID = model.ReviewID;
@@ -109,7 +109,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID && e.User == _userID);
 
                 return ctx.SaveChanges() == 1;
             }

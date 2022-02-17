@@ -12,8 +12,8 @@ namespace ChildcareScouter.Services.Services
 {
     public class ParentService
     {
-        private readonly string _userID;
-        public ParentService(string userID)
+        private readonly Guid _userID;
+        public ParentService(Guid userID)
         {
             _userID = userID;
         }
@@ -45,7 +45,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Parents.Select(e => new ParentListItem
+                var query = ctx.Parents.Where(e => e.User == _userID).Select(e => new ParentListItem
                 {
                     CompanyID = e.Company.CompanyID,
                     Name = e.Name,
@@ -64,7 +64,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == iD);
+                var entity = ctx.Parents.Single(e => e.ParentID == iD && e.User ==_userID);
 
                 return new ParentDetail
                 {
@@ -84,7 +84,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID);
+                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID && e.User == _userID);
 
                 entity.CompanyID = model.CompanyID;
                 entity.Name = model.Name;
@@ -103,7 +103,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == parentID);
+                var entity = ctx.Parents.Single(e => e.ParentID == parentID && e.User == _userID);
 
                 ctx.Parents.Remove(entity);
 

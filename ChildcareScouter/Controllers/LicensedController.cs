@@ -1,5 +1,6 @@
 ﻿using ChildcareScouter.Models.LicensedModel;
 using ChildcareScouter.Services.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,17 @@ namespace ChildcareScouter.Controllers
 {
     public class LicensedController : Controller
     {
-        private LicensedService CreateLicenseService()
+        private LicensedService CreateLicensedService()
         {
-            var svc = new LicensedService();
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var svc = new LicensedService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var svc = new LicensedService();
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var svc = new LicensedService(userID);
             var model = svc.GetLicenses();
             return View(model);
         }
@@ -35,7 +38,7 @@ namespace ChildcareScouter.Controllers
             {
                 return View(model);
             }
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
 
             if (svc.CreateLicense(model))
             {
@@ -49,7 +52,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Details(int iD)
         {
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
             var model = svc.GetLicenseByID(iD);
 
             return View(model);
@@ -57,7 +60,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Edit(int iD)
         {
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
             var detail = svc.GetLicenseByID(iD);
 
             var model = new LicensedEdit
@@ -85,7 +88,7 @@ namespace ChildcareScouter.Controllers
                 return View(model);
             }
 
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
 
             if (svc.UpdateLicense(model))
             {
@@ -99,7 +102,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Delete(int iD)
         {
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
             var model = svc.GetLicenseByID(iD);
 
             return View(model);

@@ -26,11 +26,11 @@ namespace ChildcareScouter.Data.Entities
 
         public virtual Licensed Licensed { get; set; }
 
-        //[Required]
-        //public Guid User { get; set; }
-
         [Required]
-        public string User { get; set; }
+        public Guid User { get; set; }
+
+        //[Required]
+        //public string User { get; set; }
 
         [Required]
         public string ProviderName { get; set; }
