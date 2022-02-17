@@ -9,7 +9,8 @@ namespace ChildcareScouter.Models.ChildModel
 {
     public enum FoodAllergens
     {
-        Wheat = 1,
+        None =1,
+        Wheat,
         Gluten,
         Peanut,
         Shellfish,
@@ -18,38 +19,36 @@ namespace ChildcareScouter.Models.ChildModel
         Egg,
         Diary,
         TreeNut,
-        Sesame
+        Sesame,
+        All
     }
     public class ChildCreate
     {
+        [Required]
         public int ParentID { get; set; }
+
         [Required]
         [MaxLength(80, ErrorMessage ="Name Needs to be 80 characters or less")]
-        [Display(Name = "First & Last Name")]
+        [Display(Name = "Child's Name")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings =true)]
-        [MaxLength(10)]
-        [Display(Name = "Nickname")]
-        public string NickName { get; set; }
-        
-        [Required(AllowEmptyStrings =true)]
-        [MaxLength(10)]
-        public string Pronouns { get; set; }
-
+        [Display(Name = "Date Of Birth", Prompt = "Please enter the Date/Month/Year your were born?")]
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
 
         [Required]
-        [MaxLength(20, ErrorMessage ="Please enter only 20 characters to describe your Identity.")]
+        [MaxLength(20, ErrorMessage = "Please enter only 20 characters to describe your Identity.")]
         [Display(Name = "Gender Identity")]
         public string IdentifyAs { get; set; }
-
+        [Required]
+        [Display(Name="Child Needs")]
+        public string ChildNeeds { get; set; }
         
-        [Display(Name = "Date Of Birth", Prompt ="Please enter the Date/Month/Year your were born?")]
-        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
+        [Required]
+        public int Age { get; set; }
         
         [Required]
         [Display(Name = "Food Allergens")]
-        [Range(1,10, ErrorMessage ="Please select a number between 1-10")]
+        [Range(1,10, ErrorMessage ="Please select 1")]
         public FoodAllergens FoodAllergens { get; set; }
     }
 }

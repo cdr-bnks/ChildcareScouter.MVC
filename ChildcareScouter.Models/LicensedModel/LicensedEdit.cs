@@ -18,7 +18,8 @@ namespace ChildcareScouter.Models.LicensedModel
         public DateTime DateRequired { get; set; } = DateTime.MinValue;
 
         [Display(Name = "Background Checks")]
-        public bool CriminalBackground { get; set; }
+        public bool BackgroundChecks { get; set; }
         public bool Inspection { get; set; }
+        public bool Certified { get; set; }
     }
 }

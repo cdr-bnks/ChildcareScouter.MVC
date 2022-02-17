@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.CareproviderModel;
+﻿using ChildcareScouter.Data.Entities;
+using ChildcareScouter.Models.CareproviderModel;
 using ChildcareScouter.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Index()
         {
-           var svc = new CareproviderService();
+            var svc = new CareproviderService();
             var model = svc.GetCareprovider();
             return View(model);
         }
@@ -73,11 +74,32 @@ namespace ChildcareScouter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int iD, CareproviderEdit model)
+        public ActionResult EditProviderIDAndChildID(int providerID, int childID, Careprovider model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if(model.CareproviderID != iD)
+            if (model == null && model.CareproviderID != providerID)
+            {
+                ModelState.AddModelError("", "ID# does match and does not exist");
+                return View(model);
+            }
+            var svc = CreateCareporviderService();
+            
+            if (!svc.AddChildToCareprovider(providerID, childID))
+            {
+               
+            }
+            ModelState.AddModelError("", "Your implementation could not be permitted");
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int iD, CareproviderEdit model, int provID , int childID)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.CareproviderID != iD)
             {
                 ModelState.AddModelError("", "ID# does not match");
                 return View(model);
@@ -85,18 +107,18 @@ namespace ChildcareScouter.Controllers
 
             var svc = CreateCareporviderService();
 
-            if (svc.UpdateCareprovider(model))
+            if (svc.UpdateCareprovider(model) && svc.AddChildToCareprovider(provID, childID))
             {
                 TempData["SaveResult"] = "Your Provider was successfully updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your Provider could not be permitted.");
+            ModelState.AddModelError("", "Your Provider and child could not be permitted.");
             return View();
         }
 
-        [ActionName("Delete")]
-        public ActionResult Delete( int iD)
+
+        public ActionResult Delete(int iD)
         {
             var svc = CreateCareporviderService();
             var model = svc.GetCareproviderByID(iD);
@@ -107,7 +129,7 @@ namespace ChildcareScouter.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost (int iD)
+        public ActionResult DeletePost(int iD)
         {
             var svc = CreateCareporviderService();
 

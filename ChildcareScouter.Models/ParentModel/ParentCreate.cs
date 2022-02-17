@@ -16,22 +16,22 @@ namespace ChildcareScouter.Models.ParentModel
         [Display(Name = "First & Last Name")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings = true)]
-        [MaxLength(10)]
-        public string Pronouns { get; set; }
-        
         [Required]
-        [MaxLength(20, ErrorMessage = "Please enter only 20 characters to describe your Identity.")]
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
+
+        [Required]
         [Display(Name = "Gender")]
         public string IdentifyAs { get; set; }
 
         [Required]
-        public int Age { get; set; }
-
-
         public string Email { get; set; }
 
-        [Display(Name = "Created")]
-        public DateTimeOffset CreatedUTC { get; set; }
+        [Required]
+        public int Age { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        public double PhoneNumber { get; set; }
     }
 }

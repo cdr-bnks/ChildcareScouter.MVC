@@ -11,6 +11,9 @@ namespace ChildcareScouter.Models.CompanyModel
     {
         [Display(Name = "Companies")]
         public int CompanyID { get; set; }
+        
+        [Display(Name ="License#")]
+        public int LicensedID { get; set; }
 
         [Display(Name = "Comapany Name")]
         public string CompanyName { get; set; }
@@ -19,5 +22,11 @@ namespace ChildcareScouter.Models.CompanyModel
 
         [Display(Name = "$: Price")]
         public double Price { get; set; }
+
+        [MaxLength(1100, ErrorMessage = " 1,100 characters only ")]
+        public string Policy { get; set; }
+
+        [Display(Name ="")]
+        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

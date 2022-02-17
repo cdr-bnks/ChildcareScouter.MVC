@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace ChildcareScouter.Services.Services
 {
-   public class ParentService
+    public class ParentService
     {
-        public readonly Guid _userID;
-
-        public ParentService(Guid userID)
+        private readonly string _userID;
+        public ParentService(string userID)
         {
             _userID = userID;
         }
@@ -22,15 +22,18 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Parent()
             {
+                User = _userID,
+                CompanyID = model.CompanyID,
                 Name = model.Name,
+                DateOfBirth = model.DateOfBirth,
                 IdentifyAs = model.IdentifyAs,
-                Age = model.Age,
                 Email = model.Email,
+                Age = model.Age,
+                PhoneNumber = model.PhoneNumber,
                 CreatedUTC = DateTimeOffset.Now,
-                CompanyID = model.CompanyID
             };
 
-            using( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.Parents.Add(entity);
 
@@ -40,15 +43,17 @@ namespace ChildcareScouter.Services.Services
 
         public IEnumerable<ParentListItem> GetParents()
         {
-            using( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Parents.Select(e => new ParentListItem
                 {
-                    CompanyID = e.Company. CompanyID,
+                    CompanyID = e.Company.CompanyID,
                     Name = e.Name,
+                    DateOfBirth = e.DateOfBirth,
                     IdentifyAs = e.IdentifyAs,
-                    Age = e.Age,
                     Email = e.Email,
+                    Age = e.Age,
+                    PhoneNumber = e.PhoneNumber
                 });
 
                 return query.ToArray();
@@ -66,8 +71,9 @@ namespace ChildcareScouter.Services.Services
                     CompanyID = entity.CompanyID,
                     Name = entity.Name,
                     IdentifyAs = entity.IdentifyAs,
-                    Age = entity.Age,
                     Email = entity.Email,
+                    Age = entity.Age,
+                    PhoneNumber = entity.PhoneNumber,
                     CreatedUTC = entity.CreatedUTC,
                     ModifiedUTC = entity.ModifiedUTC
                 };
@@ -76,14 +82,17 @@ namespace ChildcareScouter.Services.Services
 
         public bool UpdateParent(ParentEdit model)
         {
-            using( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID);
 
+                entity.CompanyID = model.CompanyID;
                 entity.Name = model.Name;
+                entity.DateOfBirth = model.DateOfBirth;
                 entity.IdentifyAs = model.IdentifyAs;
-                entity.Age = model.Age;
                 entity.Email = model.Email;
+                entity.Age = model.Age;
+                entity.PhoneNumber = model.PhoneNumber;
                 entity.ModifiedUTC = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
@@ -92,7 +101,7 @@ namespace ChildcareScouter.Services.Services
 
         public bool DeleteParent(int parentID)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Parents.Single(e => e.ParentID == parentID);
 

@@ -9,12 +9,6 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class=" alert alert-success fade in" role="alert">
-    @ViewBag.SaveResult
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-</div>
 <table class="table">
     <tr>
         <th>
@@ -31,6 +25,18 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ContactInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChildrenEnrolled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Staff)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullTIme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedUTC)
         </th>
         <th></th>
     </tr>
@@ -53,9 +59,21 @@
             @Html.DisplayFor(modelItem => item.ContactInfo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  iD=item.CareproviderID  }) |
-            @Html.ActionLink("Details", "Details", new {  iD=item.CareproviderID }) |
-            @Html.ActionLink("Delete", "Delete", new {  iD=item.CareproviderID })
+            @Html.DisplayFor(modelItem => item.ChildrenEnrolled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullTIme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedUTC)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  ID=item.CareproviderID }) |
+            @Html.ActionLink("Details", "Details", new { ID = item.CareproviderID }) |
+            @Html.ActionLink("Delete", "Delete", new { ID = item.CareproviderID })
         </td>
     </tr>
 }

@@ -1,0 +1,111 @@
+﻿@model ChildcareScouter.Models.ChildModel.ChildDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChildDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Parent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChildID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChildName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentifyAs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdentifyAs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChildNeeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChildNeeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+          <dt>
+            @Html.DisplayNameFor(model => model.FoodAllergens)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodAllergens)
+        </dd>
+          <dt>
+            @Html.DisplayNameFor(model => model.NumberOfProviders)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfProviders)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUTC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  ID = Model.ChildID  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

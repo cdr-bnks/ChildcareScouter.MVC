@@ -1,12 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ChildcareScouter.Models.ReviewModel
 {
-    class ReviewDetail
+    public class ReviewDetail
     {
+        public int CareproviderID { get; set; }
+       
+        public int ReviewID { get; set; }
+        
+        public string Report { get; set; }
+
+        public string Description { get; set; }
+        public int Score { get; set; }
+        
+        [Display(Name ="Recommended")]
+        public bool IsRecommended { get; set; }
+
+        [Display(Name ="Reported")]
+        public bool IsReported { get; set; }
+        
+        [Display(Name ="")]
+        public DateTimeOffset CreatedUTC { get; set; }
+
+        public DateTimeOffset? Modified { get; set; }
+
     }
 }

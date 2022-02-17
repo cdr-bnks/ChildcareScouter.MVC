@@ -22,9 +22,17 @@ namespace ChildcareScouter.Controllers
             var model = svc.GetChildren();
             return View(model);
         }
+        [HttpPost]
+        public ActionResult Index(int providerID)
+        {
+            var svc = new ChildService();
+            var model = svc.GetChildByProviderID(providerID);
+            return View(model);
+        }
 
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -40,7 +48,7 @@ namespace ChildcareScouter.Controllers
             if (svc.CreateChild(model))
             {
                 TempData["SaveResult"] = "Your Provider was created successfully.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             ModelState.AddModelError("", "Provider could not be permitted.");
 
@@ -62,10 +70,23 @@ namespace ChildcareScouter.Controllers
 
             var model = new ChildEdit
             {
-                
+                ChildID = detail.ChildID,
+                ChildName = detail.ChildName,
+                DateOfBirth = detail.DateOfBirth,
+                IdentifyAs = detail.IdentifyAs,
+                ChildNeeds = detail.ChildNeeds,
+                Age = detail.Age,
+                FoodAllergens = (FoodAllergens)detail.FoodAllergens,
             };
 
             return View(model);
+        }
+
+        public ActionResult EditID(int providerID)
+        {
+            var svc = CreateChildService();
+            var child = svc.GetChildByProviderID(providerID);
+            return View(child);
         }
 
         [HttpPost]
@@ -85,14 +106,14 @@ namespace ChildcareScouter.Controllers
             if (svc.UpdateChild(model))
             {
                 TempData["SaveResult"] = "Your Provider was successfully updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             ModelState.AddModelError("", "Your Provider could not be permitted.");
             return View();
         }
 
-        [ActionName("Delete")]
+
         public ActionResult Delete(int iD)
         {
             var svc = CreateChildService();
@@ -111,7 +132,7 @@ namespace ChildcareScouter.Controllers
             svc.DeleteChild(iD);
             TempData["SaveResult"] = "The provider has been successfully deleted from the databsae.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

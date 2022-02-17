@@ -9,21 +9,17 @@ namespace ChildcareScouter.Data.Entities
 {
     public abstract class Person
     {
+
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
 
         [Required]
         public string IdentifyAs { get; set; }
         
-        
-        public int Age { get; set; }
-        
         [Required]
-        public string Race { get; set; }
-        
-        public string Religion { get; set; }
+        public int Age { get; set; }
     }
 }

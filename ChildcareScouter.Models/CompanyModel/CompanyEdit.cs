@@ -18,5 +18,8 @@ namespace ChildcareScouter.Models.CompanyModel
 
         [Display(Name = "$: Price")]
         public double Price { get; set; }
+
+        [MaxLength(1100, ErrorMessage = " 1,100 characters only ")]
+        public string Policy { get; set; }
     }
 }

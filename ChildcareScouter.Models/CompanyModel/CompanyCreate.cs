@@ -7,19 +7,23 @@ using System.Threading.Tasks;
 
 namespace ChildcareScouter.Models.CompanyModel
 {
-   public class CompanyCreate
+    public class CompanyCreate
     {
         [Required]
         [Display(Name = "Comapany Name")]
         [MaxLength(30, ErrorMessage = "Please enter only 30 characters")]
         public string CompanyName { get; set; }
-        
+
         [Required]
-        [MaxLength(100, ErrorMessage ="Please enter only 100 characters")]
+        [MaxLength(100, ErrorMessage = "Please enter only 100 characters")]
         public string Location { get; set; }
 
-        
+        [Required]
         [Display(Name = "$: Price")]
         public double Price { get; set; }
+
+        [Required]
+        [MaxLength(1100, ErrorMessage =" 1,100 characters only ")]
+        public string Policy { get; set; }
     }
 }

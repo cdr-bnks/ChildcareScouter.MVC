@@ -9,10 +9,8 @@ namespace ChildcareScouter.Models.CareproviderModel
 {
     public class CareproviderDetail
     {
-        public int CompanyID { get; set; }
-
-        [Display(Name = "CareProvider #")]
         public int CareproviderID { get; set; }
+        public int CompanyID { get; set; }
         
         [Display(Name ="Provider")]
         public string ProviderName { get; set; } 
@@ -25,6 +23,9 @@ namespace ChildcareScouter.Models.CareproviderModel
         
         [Display(Name ="Full Time")]
         public bool FullTime { get; set; }
+
+        [Display(Name ="Provider License")]
+        public string Certificate { get; set; }
 
         [Display(Name ="Created")]
         public DateTimeOffset CreatedUTC { get; set; }

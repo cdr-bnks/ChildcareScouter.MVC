@@ -9,10 +9,8 @@ namespace ChildcareScouter.Models.LicensedModel
 {
    public class LicensedCreate
     {
-        public int LicensedID { get; set; }
-
-        public int CareproviderID { get; set; }
-
+        [Required]
+        public int CarproviderID { get; set; }
         [Required]
         [Display(Name = "Name of Certificate")]
         [MinLength(5, ErrorMessage = "Please eneter at least 5 charaters.")]
@@ -25,9 +23,12 @@ namespace ChildcareScouter.Models.LicensedModel
 
         [Required]
         [Display(Name = "Background Checks")]
-        public bool CriminalBackground { get; set; }
+        public bool BackgroundChecks { get; set; }
         
         [Required]
         public bool Inspection { get; set; }
+
+        [Required]
+        public bool Certified { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,14 +14,14 @@ namespace ChildcareScouter.Controllers
     {
         private ParentService CreateParentService()
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
+            var userID = User.Identity.GetUserId();
             var svc = new ParentService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
+            var userID = User.Identity.GetUserId();
             var svc = new ParentService(userID);
             var model = svc.GetParents();
             return View(model);
@@ -65,7 +66,13 @@ namespace ChildcareScouter.Controllers
 
             var model = new ParentEdit
             {
-
+                ParentID =detail.ParentID,
+                Name = detail.Name,
+                DateOfBirth = detail.DateOfBirth,
+                IdentifyAs = detail.IdentifyAs,
+                Email = detail.Email,
+                Age = detail.Age,
+                PhoneNumber = detail.PhoneNumber
             };
 
             return View(model);
@@ -95,7 +102,6 @@ namespace ChildcareScouter.Controllers
             return View();
         }
 
-        [ActionName("Delete")]
         public ActionResult Delete(int iD)
         {
             var svc = CreateParentService();

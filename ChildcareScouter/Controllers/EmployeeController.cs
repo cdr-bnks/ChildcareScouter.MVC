@@ -65,6 +65,15 @@ namespace ChildcareScouter.Controllers
 
             var model = new EmployeeEdit
             {
+                EmployeeID =detail.EmployeeID,
+                Name = detail.Name,
+                DateOfBirth = detail.DateOfBirth,
+                IdentifyAs = detail.IdentifyAs,
+                Email = detail.Email,
+                Salary = detail.Salary,
+                Age = detail.Age,
+                PhoneNumber =detail.PhoneNumber,
+                MaritalStatus = detail.MaritalStatus
 
             };
 
@@ -95,7 +104,7 @@ namespace ChildcareScouter.Controllers
             return View();
         }
 
-        [ActionName("Delete")]
+        
         public ActionResult Delete(int iD)
         {
             var svc = CreateEmployeeService();

@@ -11,15 +11,24 @@ namespace ChildcareScouter.Services.Services
 {
     public class LicensedService
     {
+        private readonly string _userID;
+
+        public LicensedService( string userID)
+        {
+            _userID = userID;
+        }
         public bool CreateLicense(LicensedCreate model)
         {
             var entity = new Licensed()
             {
-                LicensedID = model.CareproviderID,
+                User = _userID,
+                LicensedID =  model.CarproviderID,
                 CertificateName = model.CertificateName,
                 DateRequired = model.DateRequired,
-                CriminalBackground = model.CriminalBackground,
+                BackgroundChecks = model.BackgroundChecks,
                 Inspection = model.Inspection,
+                Certified = model.Certified,
+                CreatedUTC = DateTimeOffset.Now
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -34,14 +43,16 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Licenses.Select(e => new LicensedListItem
+                var query = ctx.Licenses.Where(e => e.User == _userID).Select(e => new LicensedListItem
                 {
-                    LicensedID = e.CareproviderID.CareproviderID,
+                    LicensedID = e.Careproviders.CareproviderID,
                     CertificateName = e.CertificateName,
                     DateRequired = e.DateRequired,
-                    CriminalBackground = e.CriminalBackground,
+                    BackgroundChecks = e.BackgroundChecks,
                     Inspection = e.Inspection,
-                    ProviderName = e.CareproviderID.ProviderName
+                    Certified = e.Certified,
+                    ProviderName = e.Careproviders.ProviderName,
+                    CreatedUTC = e.CreatedUTC
                 });
 
                 return query.ToArray();
@@ -52,16 +63,18 @@ namespace ChildcareScouter.Services.Services
         {
             using( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.CareproviderID.CareproviderID == iD);
+                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == iD && e.User == _userID);
 
                 return new LicensedDetail
                 {
-                    LicensedID = entity.CareproviderID.CareproviderID,
+                    ProviderName = entity.Careproviders.ProviderName,
+                    LicensedID = entity.Careproviders.CareproviderID,
                     CertificateName = entity.CertificateName,
                     DateRequired = entity.DateRequired,
-                    CriminalBackground = entity.CriminalBackground,
+                    BackgroundChecks = entity.BackgroundChecks,
                     Inspection = entity.Inspection,
-                    ProviderName = entity.CareproviderID.ProviderName
+                    Certified = entity.Certified,
+                    ModifiedUTC = entity.ModifiedUTC,
                 };
             }
         }
@@ -70,12 +83,14 @@ namespace ChildcareScouter.Services.Services
         {
             using( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.CareproviderID.CareproviderID == model.LicensedID);
+                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == model.LicensedID && e.User == _userID);
 
                 entity.CertificateName = model.CertificateName;
                 entity.DateRequired = model.DateRequired;
-                entity.CriminalBackground = model.CriminalBackground;
+                entity.BackgroundChecks = model.BackgroundChecks;
                 entity.Inspection = model.Inspection;
+                entity.Certified = model.Certified;
+                entity.ModifiedUTC = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -85,7 +100,7 @@ namespace ChildcareScouter.Services.Services
         {
             using ( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.CareproviderID.CareproviderID == careproviderID);
+                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == careproviderID && e.User == _userID);
 
                 ctx.Licenses.Remove(entity);
 

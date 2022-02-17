@@ -14,7 +14,6 @@ namespace ChildcareScouter.Models.EmployeeModel
         Seperated,
         Widowed,
         Divorced,
-
     }
     public class EmployeeCreate
     {
@@ -23,16 +22,11 @@ namespace ChildcareScouter.Models.EmployeeModel
         [Display(Name = "First & Last Name")]
         public string Name { get; set; }
 
-        [Required(AllowEmptyStrings =true)]
-        [MaxLength(10)]
-        [Display(Name = "Nickname")]
-        public string NickName { get; set; }
+        [Required]
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
 
-        [Required(AllowEmptyStrings =true)]
-        [MaxLength(10)]
-        public string Pronouns { get; set; }
-
-
+        [Required]
         [Display(Name = "Gender")]
         public string IdentifyAs { get; set; }
 
@@ -43,12 +37,12 @@ namespace ChildcareScouter.Models.EmployeeModel
         public double Salary { get; set; }
 
         [Required]
-        [MinLength(18, ErrorMessage ="Age has to be 18 or above")]
-        [MaxLength(89, ErrorMessage ="Age has to be below 89")]
+        [Range (18,89, ErrorMessage ="Please select age between 18 and above")]
         public int Age { get; set; }
 
+        [Required]
         [Display(Name = "Phone Number")]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
        
         [Required]
         [Display(Name =("Marital Status"))]

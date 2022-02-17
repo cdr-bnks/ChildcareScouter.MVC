@@ -1,5 +1,6 @@
 ﻿using ChildcareScouter.Models.CompanyModel;
 using ChildcareScouter.Services.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,16 @@ namespace ChildcareScouter.Controllers
     {
         private CompanyService CreateCompanyService()
         {
-            var svc = new CompanyService();
+            var userID = User.Identity.GetUserId();
+            var svc = new CompanyService(userID);
             return svc;
         }
 
         public ActionResult Index()
         {
-            var svc = new CompanyService();
-            var model = svc.GetCompanies();
+            var userID = User.Identity.GetUserId();
+            var service = new CompanyService(userID);
+            var model = service.GetCompanies();
             return View(model);
         }
 
@@ -35,9 +38,9 @@ namespace ChildcareScouter.Controllers
             {
                 return View(model);
             }
-            var svc = CreateCompanyService();
+            var service = CreateCompanyService();
 
-            if (svc.CreateCompany(model))
+            if (service.CreateCompany(model))
             {
                 TempData["SaveResult"] = "Your Provider was created successfully.";
                 return RedirectToAction("Index");
@@ -62,7 +65,11 @@ namespace ChildcareScouter.Controllers
 
             var model = new CompanyEdit
             {
-
+                CompanyID = detail.CompanyID,
+                CompanyName = detail.CompanyName,
+                Location = detail.Location,
+                Price = detail.Price,
+                Policy = detail.Policy
             };
 
             return View(model);
@@ -92,7 +99,7 @@ namespace ChildcareScouter.Controllers
             return View();
         }
 
-        [ActionName("Delete")]
+        
         public ActionResult Delete(int iD)
         {
             var svc = CreateCompanyService();

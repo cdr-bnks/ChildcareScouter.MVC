@@ -75,56 +75,13 @@
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Review.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202110615548_InitialMigration.cs" />
-    <Compile Include="Migrations\202202110615548_InitialMigration.Designer.cs">
-      <DependentUpon>202202110615548_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202122304581_AddedUserColumn.cs" />
-    <Compile Include="Migrations\202202122304581_AddedUserColumn.Designer.cs">
-      <DependentUpon>202202122304581_AddedUserColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202122325042_droppedUserColumn.cs" />
-    <Compile Include="Migrations\202202122325042_droppedUserColumn.Designer.cs">
-      <DependentUpon>202202122325042_droppedUserColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202122334113_AgeNullified.cs" />
-    <Compile Include="Migrations\202202122334113_AgeNullified.Designer.cs">
-      <DependentUpon>202202122334113_AgeNullified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202131903473_ChildCareProvider.cs" />
-    <Compile Include="Migrations\202202131903473_ChildCareProvider.Designer.cs">
-      <DependentUpon>202202131903473_ChildCareProvider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202131930214_DateTimeOffsetObjectAdded.cs" />
-    <Compile Include="Migrations\202202131930214_DateTimeOffsetObjectAdded.Designer.cs">
-      <DependentUpon>202202131930214_DateTimeOffsetObjectAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202110615548_InitialMigration.resx">
-      <DependentUpon>202202110615548_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202122304581_AddedUserColumn.resx">
-      <DependentUpon>202202122304581_AddedUserColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202122325042_droppedUserColumn.resx">
-      <DependentUpon>202202122325042_droppedUserColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202122334113_AgeNullified.resx">
-      <DependentUpon>202202122334113_AgeNullified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202131903473_ChildCareProvider.resx">
-      <DependentUpon>202202131903473_ChildCareProvider.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202131930214_DateTimeOffsetObjectAdded.resx">
-      <DependentUpon>202202131930214_DateTimeOffsetObjectAdded.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

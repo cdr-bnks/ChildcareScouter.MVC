@@ -22,7 +22,11 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int EmployeeID { get; set; }
 
-        //public Guid OwnerID { get; set; }
+        //[Required]
+        //public Guid User { get; set; }
+
+        [Required]
+        public string User { get; set; }
 
         public virtual ICollection<Careprovider> ListOfPositions { get; set; }
 
@@ -36,7 +40,7 @@ namespace ChildcareScouter.Data.Entities
         public MaritalStatus MaritalStatus { get; set; }
 
         [Required]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -46,8 +50,6 @@ namespace ChildcareScouter.Data.Entities
 
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
-
-        [Required]
         public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

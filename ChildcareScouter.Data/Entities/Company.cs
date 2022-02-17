@@ -12,6 +12,12 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int CompanyID { get; set; }
 
+        //[Required]
+        //public Guid User { get; set; }
+
+        [Required]
+        public string User { get; set; }
+
         [Required]
         public string CompanyName { get; set; }
 
@@ -21,13 +27,11 @@ namespace ChildcareScouter.Data.Entities
         [Required]
         public double Price { get; set; }
 
-       
+       [Required]
         public string Policy { get; set; }
 
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
-
-        [Required]
         public DateTimeOffset? ModifiedUTC { get; set; }
     }
 }

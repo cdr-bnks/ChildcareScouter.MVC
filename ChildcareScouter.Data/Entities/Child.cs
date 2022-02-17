@@ -10,7 +10,8 @@ namespace ChildcareScouter.Data.Entities
 {
     public enum FoodAllergens
     {
-        Wheat = 1,
+        None =1,
+        Wheat ,
         Gluten,
         Peanut,
         Shellfish,
@@ -19,7 +20,8 @@ namespace ChildcareScouter.Data.Entities
         Egg,
         Diary,
         TreeNut,
-        Sesame
+        Sesame,
+        All
 
 
     }
@@ -38,7 +40,11 @@ namespace ChildcareScouter.Data.Entities
         {
             ListOfCareProviders = new HashSet<Careprovider>();
         }
+        //[Required]
+        //public Guid User {get; set;}
 
+        [Required]
+        public string User { get; set; }
 
         [Required]
         public string ChildNeeds { get; set; }
@@ -48,39 +54,6 @@ namespace ChildcareScouter.Data.Entities
 
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
-
-        [Required]
         public DateTimeOffset? ModifiedUTC { get; set; }
     }
-
-   /* public enum FoodAllergies
-    {
-        Wheat = 1,
-        Peanut,
-        Shellfish,
-        Soy,
-        Egg,
-        Milk,
-        TreeNut
-
-
-    }
-    public class Child1 : Person
-    {
-        [Key]
-        public int Child1ID { get; set; }
-
-        public virtual ICollection<CareProvider> ListOfProviders { get; set; }
-
-        public Child1()
-        {
-            ListOfProviders = new HashSet<CareProvider>();
-        }
-
-        [Required]
-        public string ChildNeeds { get; set; }
-
-        [Required]
-        public FoodAllergies FoodAllergies { get; set; }
-    }*/
 }

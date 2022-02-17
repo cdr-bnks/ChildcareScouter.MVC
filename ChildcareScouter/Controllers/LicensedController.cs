@@ -62,7 +62,12 @@ namespace ChildcareScouter.Controllers
 
             var model = new LicensedEdit
             {
-
+                LicensedID = detail.LicensedID,
+                CertificateName = detail.CertificateName,
+                DateRequired = detail.DateRequired,
+                BackgroundChecks = detail.BackgroundChecks,
+                Inspection = detail.Inspection,
+                Certified = detail.Certified
             };
 
             return View(model);
@@ -92,7 +97,6 @@ namespace ChildcareScouter.Controllers
             return View();
         }
 
-        [ActionName("Delete")]
         public ActionResult Delete(int iD)
         {
             var svc = CreateLicenseService();

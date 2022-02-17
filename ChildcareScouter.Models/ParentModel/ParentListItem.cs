@@ -16,11 +16,20 @@ namespace ChildcareScouter.Models.ParentModel
 
         public string Name { get; set; }
 
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; } = DateTime.MinValue;
+
         [Display(Name = "Gender Identity")]
         public string IdentifyAs { get; set; }
-        
-        public int Age { get; set; }
 
         public string Email { get; set; }
+
+        public int Age { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public double PhoneNumber { get; set; }
+
+        [Display(Name = "")]
+        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

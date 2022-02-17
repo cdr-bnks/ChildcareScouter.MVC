@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ChildcareScouter.Models.ReviewModel.ReviewListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarproviderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Report)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRecommended)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.IsReported)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProviderName)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.CertificateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCertified)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedUTC)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarproviderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Report)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRecommended)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.IsReported)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.ProviderName)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.CertificateName)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCertified)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedUTC)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  ID=item.ReviewID }) |
+            @Html.ActionLink("Details", "Details", new { ID = item.ReviewID }) |
+            @Html.ActionLink("Delete", "Delete", new { ID = item.ReviewID })
+        </td>
+    </tr>
+}
+
+</table>

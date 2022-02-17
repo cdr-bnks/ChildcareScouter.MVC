@@ -9,6 +9,7 @@ namespace ChildcareScouter.Models.CareproviderModel
 {
     public class CareproviderCreate
     {
+        [Required]
         public int CompanyID { get; set; }
 
         [Required]

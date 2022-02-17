@@ -11,9 +11,9 @@ namespace ChildcareScouter.Services.Services
 {
     public class EmployeeService
     {
-        private readonly Guid _userID;
+        private readonly string _userID;
 
-        public EmployeeService(Guid userID)
+        public EmployeeService(string userID)
         {
             _userID = userID;
         }
@@ -21,7 +21,9 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Employee()
             {
+                User = _userID,
                 Name = model.Name,
+                DateOfBirth = model.DateOfBirth,
                 IdentifyAs = model.IdentifyAs,
                 Email = model.Email,
                 Salary = model.Salary,
@@ -30,7 +32,7 @@ namespace ChildcareScouter.Services.Services
                 MaritalStatus = (Data.Entities.MaritalStatus)model.MaritalStatus,
                 CreatedUTC = DateTimeOffset.Now
             };
-            
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Employees.Add(entity);
@@ -43,32 +45,42 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Employees.Select(e => new EmployeeListItem
+                var query = ctx.Employees.Where(e => e.User == _userID).Select(e => new EmployeeListItem
                 {
                     EmployeeID = e.EmployeeID,
                     Name = e.Name,
+                    DateOfBirth = e.DateOfBirth,
                     IdentifyAs = e.IdentifyAs,
+                    Email = e.Email,
                     Salary = e.Salary,
-                    PhoneNumber = e.PhoneNumber
+                    Age = e.Age,
+                    PhoneNumber = e.PhoneNumber,
+                    MaritalStatus = (Models.EmployeeModel.MaritalStatus)e.MaritalStatus,
+                    ListOfPositions = e.ListOfPositions.Count,
+                    CreatedUTC = e.CreatedUTC
                 });
 
                 return query.ToArray();
             }
         }
 
-        public EmployeeDetail GetEmployeeByID( int iD)
+        public EmployeeDetail GetEmployeeByID(int iD)
         {
-            using( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == iD);
+                var entity = ctx.Employees.Single(e => e.EmployeeID == iD && e.User == _userID);
 
                 return new EmployeeDetail
                 {
                     EmployeeID = entity.EmployeeID,
                     Name = entity.Name,
+                    DateOfBirth = entity.DateOfBirth,
                     IdentifyAs = entity.IdentifyAs,
                     Salary = entity.Salary,
+                    Age = entity.Age,
                     PhoneNumber = entity.PhoneNumber,
+                    MaritalStatus = (Models.EmployeeModel.MaritalStatus)entity.MaritalStatus,
+                    ListOfPostions = entity.ListOfPositions.Count,
                     CreatedUTC = entity.CreatedUTC,
                     ModifiedUTC = entity.ModifiedUTC
                 };
@@ -77,11 +89,12 @@ namespace ChildcareScouter.Services.Services
 
         public bool UpdateEmployee(EmployeeEdit model)
         {
-            using ( var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == model.EmployeeID);
-
+                var entity = ctx.Employees.Single(e => e.EmployeeID == model.EmployeeID && e.User == _userID);
+                
                 entity.Name = model.Name;
+                entity.DateOfBirth = model.DateOfBirth;
                 entity.IdentifyAs = model.IdentifyAs;
                 entity.Email = model.Email;
                 entity.Salary = model.Salary;
@@ -94,11 +107,11 @@ namespace ChildcareScouter.Services.Services
             }
         }
 
-        public bool DeleteEmployee( int employeeID)
+        public bool DeleteEmployee(int employeeID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == employeeID);
+                var entity = ctx.Employees.Single(e => e.EmployeeID == employeeID && e.User == _userID);
 
                 return ctx.SaveChanges() == 1;
             }
