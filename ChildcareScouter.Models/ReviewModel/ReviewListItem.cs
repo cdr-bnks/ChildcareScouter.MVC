@@ -29,11 +29,11 @@ namespace ChildcareScouter.Models.ReviewModel
         [Display(Name = "Careprovider Name")]
         public string ProviderName { get; set; }
 
-        [Display(Name ="Certificate")]
-        public string CertificateName { get; set; }
+        [Display(Name ="Children Enrolled")]
+        public int ChildrenEnrolled { get; set; }
 
-        [Display(Name = "Certified")]
-        public bool IsCertified { get; set; }
+        [Display(Name = "Childcare Provider")]
+        public int CareproviderID { get; set; }
 
         [Display(Name ="")]
         public DateTimeOffset CreatedUTC { get; set; }

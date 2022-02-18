@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.EmployeeModel;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Models.EmployeeModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -13,7 +14,7 @@ namespace ChildcareScouter.Controllers
     {
         private EmployeeService CreateEmployeeService()
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
+            var userID = Guid.Parse(User.Identity.GetUserId()); 
             var svc = new EmployeeService(userID);
             return svc;
         }

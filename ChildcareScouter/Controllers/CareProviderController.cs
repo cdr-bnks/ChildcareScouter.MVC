@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Data.Entities;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Data.Entities;
 using ChildcareScouter.Models.CareproviderModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
@@ -14,7 +15,7 @@ namespace ChildcareScouter.Controllers
     {
         private CareproviderService CreateCareporviderService( )
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
+            var userID =  Guid.Parse(User.Identity.GetUserId());
             var svc = new CareproviderService(userID );
             return svc;
         }

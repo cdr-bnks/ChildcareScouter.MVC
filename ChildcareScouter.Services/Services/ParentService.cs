@@ -22,7 +22,7 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Parent()
             {
-                User = _userID,
+                OwnerID = _userID,
                 CompanyID = model.CompanyID,
                 Name = model.Name,
                 DateOfBirth = model.DateOfBirth,
@@ -45,7 +45,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Parents.Where(e => e.User == _userID).Select(e => new ParentListItem
+                var query = ctx.Parents.Where(e => e.OwnerID == _userID ).Select(e => new ParentListItem
                 {
                     CompanyID = e.Company.CompanyID,
                     Name = e.Name,
@@ -64,7 +64,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == iD && e.User ==_userID);
+                var entity = ctx.Parents.Single(e => e.ParentID == iD && e.OwnerID ==_userID );
 
                 return new ParentDetail
                 {
@@ -84,7 +84,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID && e.User == _userID);
+                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID && e.OwnerID == _userID );
 
                 entity.CompanyID = model.CompanyID;
                 entity.Name = model.Name;
@@ -103,7 +103,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == parentID && e.User == _userID);
+                var entity = ctx.Parents.Single(e => e.ParentID == parentID && e.OwnerID == _userID );
 
                 ctx.Parents.Remove(entity);
 

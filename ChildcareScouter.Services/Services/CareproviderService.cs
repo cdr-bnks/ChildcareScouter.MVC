@@ -22,7 +22,7 @@ namespace ChildcareScouter.Services.Services
             var entity =
                         new Careprovider()
                         {
-                            User = _userID,
+                            OwnerID = _userID,
                             CompanyID = model.CompanyID,
                             ProviderName = model.ProviderName,
                             ProviderTitle = model.ProviderTitle,
@@ -108,7 +108,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Careproviders.Where(e => e.User == _userID).Select(e => new CareproviderListItem
+                var query = ctx.Careproviders.Where(e => e.OwnerID == _userID).Select(e => new CareproviderListItem
                 {
                     CompanyID = e.CompanyID,
                     CareproviderID = e.CareproviderID,
@@ -129,13 +129,13 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Careproviders.Single(c => c.CareproviderID == iD && c.User == _userID);
+                var entity = ctx.Careproviders.Single(c => c.CareproviderID == iD && c.OwnerID == _userID);
 
                 return new CareproviderDetail()
                 {
                     CompanyID = entity.CompanyID,
                     CareproviderID = entity.CareproviderID,
-                    Certificate = entity.Licensed.CertificateName,
+                    CompanyPrices = entity.Company.Price,            
                     ProviderName = entity.ProviderName,
                     ProviderTitle = entity.ProviderTitle,
                     ContactInfo = entity.ContactInfo,
@@ -150,7 +150,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Careproviders.Single(e => e.CareproviderID == model.CareproviderID && e.User == _userID);
+                var entity = ctx.Careproviders.Single(e => e.CareproviderID == model.CareproviderID && e.OwnerID == _userID);
                 
                 entity.ProviderName = model.ProviderName;
                 entity.ProviderTitle = model.ProviderTitle;
@@ -166,7 +166,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Careproviders.Single(e => e.CareproviderID == careproviderID && e.User == _userID);
+                var entity = ctx.Careproviders.Single(e => e.CareproviderID == careproviderID && e.OwnerID == _userID);
 
                 ctx.Careproviders.Remove(entity);
 

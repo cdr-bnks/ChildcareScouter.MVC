@@ -24,8 +24,8 @@ namespace ChildcareScouter.Models.CareproviderModel
         [Display(Name ="Full Time")]
         public bool FullTime { get; set; }
 
-        [Display(Name ="Provider License")]
-        public string Certificate { get; set; }
+        [Display(Name ="Company Prices")]
+        public double CompanyPrices { get; set; }
 
         [Display(Name ="Created")]
         public DateTimeOffset CreatedUTC { get; set; }

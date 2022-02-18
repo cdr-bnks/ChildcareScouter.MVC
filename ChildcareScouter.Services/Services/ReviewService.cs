@@ -21,7 +21,7 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Review()
             {
-                User = _userID,
+                OwnerID = _userID ,
                 CareproviderID = model.CareproviderID,
                 Report = model.Report,
                 Description = model.Descritption,
@@ -46,7 +46,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Reviews.Where(e => e.User == _userID).Select(e => new ReviewListItem
+                var query = ctx.Reviews.Where(e => e.OwnerID == _userID ).Select(e => new ReviewListItem
                 {
                     CarproviderID = e.Careprovider.CareproviderID,
                     ReviewID = e.ReviewID,
@@ -56,8 +56,8 @@ namespace ChildcareScouter.Services.Services
                     IsRecommended = e.IsRecommended,
                     IsReported = e.IsReported,
                     ProviderName = e.Careprovider.ProviderName,
-                    CertificateName = e.Careprovider.Licensed.CertificateName,
-                    IsCertified = e.Careprovider.Licensed.Certified,
+                    ChildrenEnrolled = e.Careprovider.ChildrenEnrolled.Count,  
+                    CareproviderID = e.Careprovider.CareproviderID, 
                     CreatedUTC = e.CreatedUTC
                 });
 
@@ -69,7 +69,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == iD && e.User == _userID);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == iD && e.OwnerID == _userID );
 
                 return new ReviewDetail
                 {
@@ -90,7 +90,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID && e.User == _userID);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID && e.OwnerID == _userID );
 
                 entity.CareproviderID = model.CareProviderID;
                 entity.ReviewID = model.ReviewID;
@@ -109,7 +109,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID && e.User == _userID);
+                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID && e.OwnerID == _userID );
 
                 return ctx.SaveChanges() == 1;
             }

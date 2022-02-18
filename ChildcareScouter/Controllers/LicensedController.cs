@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.LicensedModel;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Models.LicensedModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -11,18 +12,18 @@ namespace ChildcareScouter.Controllers
 {
     public class LicensedController : Controller
     {
-        private LicensedService CreateLicensedService()
+        private LicensedService CreateLicensedService( )
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
-            var svc = new LicensedService(userID);
+            //var userID = new ApplicationUser( );
+            var svc = new LicensedService();
             return svc;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int provID)
         {
-            var userID = Guid.Parse(User.Identity.GetUserId());
-            var svc = new LicensedService(userID);
-            var model = svc.GetLicenses();
+            //var userID = new ApplicationUser();
+            var svc = new LicensedService();
+            var model = svc.GetLicenses( provID);
             return View(model);
         }
 
@@ -32,7 +33,7 @@ namespace ChildcareScouter.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(LicensedCreate model)
+        public ActionResult Create(LicensedCreate model, int provID )
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +41,7 @@ namespace ChildcareScouter.Controllers
             }
             var svc = CreateLicensedService();
 
-            if (svc.CreateLicense(model))
+            if (svc.CreateLicense(model, provID))
             {
                 TempData["SaveResult"] = "Your Provider was created successfully.";
                 return RedirectToAction("Index");
@@ -65,7 +66,7 @@ namespace ChildcareScouter.Controllers
 
             var model = new LicensedEdit
             {
-                LicensedID = detail.LicensedID,
+                LicensedID = iD,
                 CertificateName = detail.CertificateName,
                 DateRequired = detail.DateRequired,
                 BackgroundChecks = detail.BackgroundChecks,
@@ -113,7 +114,7 @@ namespace ChildcareScouter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int iD)
         {
-            var svc = CreateLicenseService();
+            var svc = CreateLicensedService();
 
             svc.DeleteLicense(iD);
             TempData["SaveResult"] = "The provider has been successfully deleted from the databsae.";

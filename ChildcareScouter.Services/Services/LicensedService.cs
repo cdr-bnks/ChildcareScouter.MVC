@@ -9,25 +9,27 @@ using System.Threading.Tasks;
 
 namespace ChildcareScouter.Services.Services
 {
-    public class LicensedService
+    public class LicensedService 
     {
-        private readonly Guid _userID;
+        //private readonly ApplicationUser _userID;
 
-        public LicensedService( Guid userID)
-        {
-            _userID = userID;
-        }
-        public bool CreateLicense(LicensedCreate model)
+        //public LicensedService( ApplicationUser userID)
+        //{
+        //    _userID = userID;
+        //}
+        public bool CreateLicense(LicensedCreate model, int provID)
         {
             var entity = new Licensed()
             {
-                User = _userID,
-                LicensedID =  model.CarproviderID,
+                LicensedID = provID,
                 CertificateName = model.CertificateName,
                 DateRequired = model.DateRequired,
                 BackgroundChecks = model.BackgroundChecks,
                 Inspection = model.Inspection,
                 Certified = model.Certified,
+                CPRTraining = model.CPRTraining,
+                ChildNumber = model.ChildNumber,
+                StateRegistered = model.StateRegistered,
                 CreatedUTC = DateTimeOffset.Now
             };
 
@@ -39,19 +41,21 @@ namespace ChildcareScouter.Services.Services
             }
         }
 
-        public IEnumerable<LicensedListItem> GetLicenses()
+        public IEnumerable<LicensedListItem> GetLicenses(int provID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Licenses.Where(e => e.User == _userID).Select(e => new LicensedListItem
+                var query = ctx.Licenses/*.Where(e => e.OwnerID == provID.ToString())*/.Select(e => new LicensedListItem
                 {
-                    LicensedID = e.Careproviders.CareproviderID,
+                    ProviderName = e.Careprovider.ProviderName,
+                    LicensedID = provID,
                     CertificateName = e.CertificateName,
                     DateRequired = e.DateRequired,
                     BackgroundChecks = e.BackgroundChecks,
                     Inspection = e.Inspection,
                     Certified = e.Certified,
-                    ProviderName = e.Careproviders.ProviderName,
+                    CPRTraining = e.CPRTraining,
+                    StateRegistered = e.StateRegistered,
                     CreatedUTC = e.CreatedUTC
                 });
 
@@ -63,17 +67,20 @@ namespace ChildcareScouter.Services.Services
         {
             using( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == iD && e.User == _userID);
+                var entity = ctx.Licenses.Single(e => e.LicensedID == iD /*&& e.OwnerID == _userID.ToString()*/);
 
                 return new LicensedDetail
                 {
-                    ProviderName = entity.Careproviders.ProviderName,
-                    LicensedID = entity.Careproviders.CareproviderID,
+                    ProviderName = entity.Careprovider.ProviderName,
+                    LicensedID = iD,
                     CertificateName = entity.CertificateName,
                     DateRequired = entity.DateRequired,
                     BackgroundChecks = entity.BackgroundChecks,
                     Inspection = entity.Inspection,
                     Certified = entity.Certified,
+                    CPRTraining = entity.CPRTraining,
+                    ChildNumber = entity.ChildNumber,
+                    StateRegistered = entity.StateRegistered,
                     ModifiedUTC = entity.ModifiedUTC,
                 };
             }
@@ -83,24 +90,27 @@ namespace ChildcareScouter.Services.Services
         {
             using( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == model.LicensedID && e.User == _userID);
+                var entity = ctx.Licenses.Single(e => e.LicensedID == model.LicensedID /*&& e.OwnerID == provID.ToString()*/);
 
                 entity.CertificateName = model.CertificateName;
                 entity.DateRequired = model.DateRequired;
                 entity.BackgroundChecks = model.BackgroundChecks;
                 entity.Inspection = model.Inspection;
                 entity.Certified = model.Certified;
+                entity.CPRTraining = model.CPRTraining;
+                entity.ChildNumber = model.ChildNumber;
+                entity.StateRegistered = model.StateRegistered;
                 entity.ModifiedUTC = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteLicense( int careproviderID)
+        public bool DeleteLicense( int provID)
         {
             using ( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Licenses.Single(e => e.Careproviders.CareproviderID == careproviderID && e.User == _userID);
+                var entity = ctx.Licenses.Single(e => e.LicensedID == provID /*&& e.OwnerID == _userID.ToString()*/);
 
                 ctx.Licenses.Remove(entity);
 

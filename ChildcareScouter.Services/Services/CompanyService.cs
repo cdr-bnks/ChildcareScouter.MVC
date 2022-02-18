@@ -21,7 +21,7 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Company()
             {
-                User = _userID,
+                OwnerID = _userID,
                 CompanyName = model.CompanyName,
                 Location = model.Location,
                 Price = model.Price,
@@ -43,7 +43,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Companies.Where(e => e.User == _userID).Select(e => new CompanyListItem
+                var query = ctx.Companies.Where(e => e.OwnerID == _userID).Select(e => new CompanyListItem
                 {
                     CompanyID = e.CompanyID,
                     Location = e.Location,
@@ -60,7 +60,7 @@ namespace ChildcareScouter.Services.Services
         {
             using ( var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Companies.Single(e => e.CompanyID == iD && e.User == _userID);
+                var entity = ctx.Companies.Single(e => e.CompanyID == iD && e.OwnerID == _userID);
 
                 return new CompanyDetail
                 {
@@ -80,7 +80,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Companies.Single(e => e.CompanyID == model.CompanyID && e.User == _userID);
+                var entity = ctx.Companies.Single(e => e.CompanyID == model.CompanyID && e.OwnerID == _userID);
 
                 entity.CompanyName = model.CompanyName;
                 entity.Location = model.Location;
@@ -96,7 +96,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Companies.Single(e => e.CompanyID == companyID && e.User == _userID);
+                var entity = ctx.Companies.Single(e => e.CompanyID == companyID && e.OwnerID == _userID);
 
                 ctx.Companies.Remove(entity);
 

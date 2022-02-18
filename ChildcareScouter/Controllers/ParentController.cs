@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.ParentModel;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Models.ParentModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;

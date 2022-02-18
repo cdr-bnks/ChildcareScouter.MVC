@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.ReviewModel;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Models.ReviewModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;

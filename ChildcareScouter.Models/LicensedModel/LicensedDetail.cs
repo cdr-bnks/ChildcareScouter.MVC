@@ -25,6 +25,18 @@ namespace ChildcareScouter.Models.LicensedModel
         public bool Inspection { get; set; }
         public bool Certified { get; set; }
 
+        
+        [Display(Name = "CPR Training")]
+        public bool CPRTraining { get; set; }
+
+        
+        [Display(Name = "Child Capacity")]
+        public int ChildNumber { get; set; }
+
+        
+        [Display(Name = "State Registered")]
+        public bool StateRegistered { get; set; }
+
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUTC { get; set; }
 

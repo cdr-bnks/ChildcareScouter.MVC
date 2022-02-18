@@ -10,16 +10,19 @@ namespace ChildcareScouter.Data.Entities
 {
    public class Licensed
     {
-        [ForeignKey(nameof(Careproviders))]
+        [ForeignKey(nameof(Careprovider))]
         public int LicensedID { get; set; }
       
-        public virtual Careprovider Careproviders { get; set; }
+        public virtual Careprovider Careprovider { get; set; }
 
-        [Required]
-        public Guid User { get; set; }
+        //[ForeignKey(nameof(User))]
+        //public string OwnerID { get; set; }
+        //public virtual ApplicationUser User { get; set; }
+
 
         //[Required]
-        //public string User { get; set; }
+        //[Column(TypeName = "OwnerID")]
+        //public Guid OwnerID { get; set; }
 
         [Required]
         public string CertificateName { get; set; }
@@ -32,10 +35,19 @@ namespace ChildcareScouter.Data.Entities
         
         [Required]
         public bool Inspection { get; set; }
-        
+
         [Required]
-        public DateTime DateRequired { get; set; }
-        
+        public DateTime DateRequired { get; set; } = DateTime.MinValue;
+
+        [Required]
+        public bool CPRTraining { get; set; }
+
+        [Required]
+            public int ChildNumber { get; set; }
+
+        [Required]
+        public bool StateRegistered { get; set; }
+
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
         public DateTimeOffset? ModifiedUTC { get; set; }

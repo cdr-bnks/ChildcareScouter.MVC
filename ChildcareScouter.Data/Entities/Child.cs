@@ -40,11 +40,14 @@ namespace ChildcareScouter.Data.Entities
         {
             ListOfCareProviders = new HashSet<Careprovider>();
         }
-        [Required]
-        public Guid User { get; set; }
 
-        //[Required]
-        //public string User { get; set; }
+        //[ForeignKey(nameof(User))]
+        //public string OwnerID { get; set; }
+        //public ApplicationUser User { get; set; }
+
+        [Required]
+        [Column(TypeName ="OwnerID")]
+        public Guid OwnerID { get; set; }
 
         [Required]
         public string ChildNeeds { get; set; }

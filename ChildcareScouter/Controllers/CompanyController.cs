@@ -1,4 +1,5 @@
-﻿using ChildcareScouter.Models.CompanyModel;
+﻿using ChildcareScouter.Data;
+using ChildcareScouter.Models.CompanyModel;
 using ChildcareScouter.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;

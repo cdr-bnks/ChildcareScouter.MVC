@@ -21,7 +21,7 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Child()
             {
-                User = _userID,
+                OwnerID = _userID,
                 ParentID = model.ParentID,
                 Name = model.Name,
                 DateOfBirth = model.DateOfBirth,
@@ -43,7 +43,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Children.Where(e => e.User == _userID).Select(e => new ChildListItem
+                var query = ctx.Children.Where(e => e.OwnerID == _userID).Select(e => new ChildListItem
                 {
                     ParentID = e.Parent.ParentID,
                     ParentName = e.Parent.Name,
@@ -65,7 +65,7 @@ namespace ChildcareScouter.Services.Services
         {
             using(var ctx = new ApplicationDbContext())
             {
-                var providerNum = ctx.Careproviders.Single(p => p.CareproviderID == providerID && p.User == _userID).ChildrenEnrolled.Select(ce => new ChildListItem
+                var providerNum = ctx.Careproviders.Single(p => p.CareproviderID == providerID && p.OwnerID == _userID).ChildrenEnrolled.Select(ce => new ChildListItem
                 {
                     ChildID = ce.ChildID,
                     Name = ce.Name
@@ -78,7 +78,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Children.Single(e => e.ChildID == iD && e.User == _userID);
+                var entity = ctx.Children.Single(e => e.ChildID == iD && e.OwnerID == _userID);
 
                 return new ChildDetail
                 {
@@ -102,7 +102,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Children.Single(e => e.ChildID == model.ChildID && e.User == _userID);
+                var entity = ctx.Children.Single(e => e.ChildID == model.ChildID && e.OwnerID == _userID);
 
                 entity.Name = model.ChildName;
                 entity.DateOfBirth = model.DateOfBirth;
@@ -120,7 +120,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Children.Single(e => e.ChildID == childID && e.User == _userID);
+                var entity = ctx.Children.Single(e => e.ChildID == childID && e.OwnerID == _userID);
                 
                 ctx.Children.Remove(entity);
 

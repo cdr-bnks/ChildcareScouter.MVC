@@ -21,7 +21,7 @@ namespace ChildcareScouter.Services.Services
         {
             var entity = new Employee()
             {
-                User = _userID,
+                OwnerID = _userID,
                 Name = model.Name,
                 DateOfBirth = model.DateOfBirth,
                 IdentifyAs = model.IdentifyAs,
@@ -45,7 +45,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Employees.Where(e => e.User == _userID).Select(e => new EmployeeListItem
+                var query = ctx.Employees.Where(e => e.OwnerID == _userID).Select(e => new EmployeeListItem
                 {
                     EmployeeID = e.EmployeeID,
                     Name = e.Name,
@@ -68,7 +68,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == iD && e.User == _userID);
+                var entity = ctx.Employees.Single(e => e.EmployeeID == iD && e.OwnerID == _userID);
 
                 return new EmployeeDetail
                 {
@@ -91,7 +91,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == model.EmployeeID && e.User == _userID);
+                var entity = ctx.Employees.Single(e => e.EmployeeID == model.EmployeeID && e.OwnerID == _userID);
                 
                 entity.Name = model.Name;
                 entity.DateOfBirth = model.DateOfBirth;
@@ -111,7 +111,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Employees.Single(e => e.EmployeeID == employeeID && e.User == _userID);
+                var entity = ctx.Employees.Single(e => e.EmployeeID == employeeID && e.OwnerID == _userID);
 
                 return ctx.SaveChanges() == 1;
             }

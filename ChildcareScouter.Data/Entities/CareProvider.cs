@@ -24,13 +24,14 @@ namespace ChildcareScouter.Data.Entities
             ChildrenEnrolled = new HashSet<Child>();
         }
 
-        public virtual Licensed Licensed { get; set; }
 
         [Required]
-        public Guid User { get; set; }
+        [Column(TypeName = "OwnerID")]
+        public Guid OwnerID { get; set; }
 
-        //[Required]
-        //public string User { get; set; }
+        //[ForeignKey(nameof(User))]
+        //public string OwnerID { get; set; }
+        //public ApplicationUser User { get; set; }
 
         [Required]
         public string ProviderName { get; set; }
