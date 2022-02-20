@@ -10,8 +10,10 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
+        
         private CompanyService CreateCompanyService()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
@@ -22,8 +24,8 @@ namespace ChildcareScouter.Controllers
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new CompanyService(userID);
-            var model = service.GetCompanies();
+            var svc = new CompanyService(userID);
+            var model = svc.GetCompanies();
             return View(model);
         }
 

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class ReviewController : Controller
     {
         private ReviewService CreateReviewService()

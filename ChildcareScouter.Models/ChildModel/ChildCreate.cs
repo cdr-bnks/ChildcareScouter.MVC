@@ -26,7 +26,6 @@ namespace ChildcareScouter.Models.ChildModel
     {
         [Required]
         public int ParentID { get; set; }
-
         [Required]
         [MaxLength(80, ErrorMessage ="Name Needs to be 80 characters or less")]
         [Display(Name = "Child's Name")]
@@ -44,11 +43,19 @@ namespace ChildcareScouter.Models.ChildModel
         public string ChildNeeds { get; set; }
         
         [Required]
+        [Range(1,14)]
         public int Age { get; set; }
         
         [Required]
         [Display(Name = "Food Allergens")]
         [Range(1,10, ErrorMessage ="Please select 1")]
         public FoodAllergens FoodAllergens { get; set; }
+
+        [Required]
+        [Display(Name ="Ethnicity")]
+        public string Race { get; set; }
+        
+        [Required]
+        public string Religion { get; set; }
     }
 }

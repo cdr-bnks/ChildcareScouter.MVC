@@ -9,8 +9,9 @@ namespace ChildcareScouter.Models.ParentModel
 {
     public class ParentCreate
     {
-        public int CompanyID { get; set; }
 
+        [Required]
+        public int CompanyID { get; set; }
         [Required]
         [MaxLength(80, ErrorMessage = "Name Needs to be 80 characters or less")]
         [Display(Name = "First & Last Name")]
@@ -33,5 +34,12 @@ namespace ChildcareScouter.Models.ParentModel
         [Required]
         [Display(Name = "Phone Number")]
         public double PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        [Required]
+        public string Religion { get; set; }
     }
 }

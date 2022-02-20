@@ -11,8 +11,6 @@ namespace ChildcareScouter.Models.CareproviderModel
     {
         public int CareproviderID { get; set; }
 
-        public int CompanyID { get; set; }
-
         [Display(Name = "Provider Name")]
         public string ProviderName { get; set; }
 

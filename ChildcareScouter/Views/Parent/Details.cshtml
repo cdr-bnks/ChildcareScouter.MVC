@@ -75,6 +75,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Race)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Race)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Religion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Religion)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CreatedUTC)
         </dt>
 
@@ -93,6 +109,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  ID = Model.ParentID  }) |
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ParentID  }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

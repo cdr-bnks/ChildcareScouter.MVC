@@ -24,7 +24,7 @@ namespace ChildcareScouter.Services.Services
                 OwnerID = _userID ,
                 CareproviderID = model.CareproviderID,
                 Report = model.Report,
-                Description = model.Descritption,
+                Description = model.Description,
                 Score = model.Score,
                 IsRecommended = model.IsRecommended,
                 IsReported = model.IsReported,
@@ -46,9 +46,8 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Reviews.Where(e => e.OwnerID == _userID ).Select(e => new ReviewListItem
+                var query = ctx.Reviews.Where(e => e.OwnerID == _userID).Select(e => new ReviewListItem
                 {
-                    CarproviderID = e.Careprovider.CareproviderID,
                     ReviewID = e.ReviewID,
                     Report = e.Report,
                     Description = e.Description,
@@ -69,7 +68,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == iD && e.OwnerID == _userID );
+                var entity = ctx.Reviews.Single(e => e.ReviewID == iD && e.OwnerID == _userID);
 
                 return new ReviewDetail
                 {
@@ -90,9 +89,8 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID && e.OwnerID == _userID );
+                var entity = ctx.Reviews.Single(e => e.ReviewID == model.ReviewID && e.OwnerID == _userID);
 
-                entity.CareproviderID = model.CareProviderID;
                 entity.ReviewID = model.ReviewID;
                 entity.Report = model.Report;
                 entity.Description = model.Description;
@@ -109,7 +107,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID && e.OwnerID == _userID );
+                var entity = ctx.Reviews.Single(e => e.ReviewID == reviewID && e.OwnerID == _userID);
 
                 return ctx.SaveChanges() == 1;
             }

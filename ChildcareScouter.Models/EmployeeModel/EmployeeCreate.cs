@@ -48,5 +48,12 @@ namespace ChildcareScouter.Models.EmployeeModel
         [Display(Name =("Marital Status"))]
         [Range(1,5, ErrorMessage ="Please select 1-5")]
         public MaritalStatus MaritalStatus { get; set; }
+
+        [Required]
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        [Required]
+        public string Religion { get; set; }
     }
 }

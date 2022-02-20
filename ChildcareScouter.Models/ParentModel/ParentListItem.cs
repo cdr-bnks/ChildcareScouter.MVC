@@ -9,6 +9,7 @@ namespace ChildcareScouter.Models.ParentModel
 {
     public class ParentListItem
     {
+        [Display(Name="Companies Attached")]
         public int CompanyID { get; set; }
 
         [Display(Name ="Parents")]
@@ -28,6 +29,11 @@ namespace ChildcareScouter.Models.ParentModel
 
         [Display(Name = "Phone Number")]
         public double PhoneNumber { get; set; }
+
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
 
         [Display(Name = "")]
         public DateTimeOffset CreatedUTC { get; set; }

@@ -28,6 +28,11 @@ namespace ChildcareScouter.Models.ParentModel
 
         public double PhoneNumber { get; set; }
 
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
+
         [Display(Name = "")]
         public DateTimeOffset CreatedUTC { get; set; }
 

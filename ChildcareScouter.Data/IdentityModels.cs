@@ -38,7 +38,6 @@ namespace ChildcareScouter.Data
         public DbSet<Child> Children { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Parent> Parents { get; set; }
-        public DbSet<Licensed> Licenses { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
 

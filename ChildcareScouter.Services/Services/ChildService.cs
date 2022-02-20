@@ -12,7 +12,7 @@ namespace ChildcareScouter.Services.Services
     public class ChildService
     {
         private readonly Guid _userID;
-
+       
         public ChildService(Guid userID)
         {
             _userID = userID;
@@ -28,6 +28,8 @@ namespace ChildcareScouter.Services.Services
                 IdentifyAs = model.IdentifyAs,
                 ChildNeeds = model.ChildNeeds,
                 Age = model.Age,
+                Race = model.Race,
+                Religion = model.Religion,
                 FoodAllergens = (Data.Entities.FoodAllergens)model.FoodAllergens,
                 CreatedUTC = DateTimeOffset.Now,
             };
@@ -53,6 +55,8 @@ namespace ChildcareScouter.Services.Services
                     IdentifyAs = e.IdentifyAs,
                     ChildNeeds = e.ChildNeeds,
                     Age = e.Age,
+                    Race = e.Race,
+                    Religion = e.Religion,
                     FoodAllergens = (Models.ChildModel.FoodAllergens)e.FoodAllergens,
                     NumberOfProviders = e.ListOfCareProviders.Count,
                     CreatedUTC = e.CreatedUTC
@@ -90,6 +94,8 @@ namespace ChildcareScouter.Services.Services
                     IdentifyAs = entity.IdentifyAs,
                     ChildNeeds = entity.ChildNeeds,
                     Age = entity.Age,
+                    Race = entity.Race,
+                    Religion = entity.Religion,
                     FoodAllergens = (Models.ChildModel.FoodAllergens)entity.FoodAllergens,
                     NumberOfProviders = entity.ListOfCareProviders.Count,
                     CreatedUTC = entity.CreatedUTC,
@@ -109,6 +115,8 @@ namespace ChildcareScouter.Services.Services
                 entity.IdentifyAs = model.IdentifyAs;
                 entity.ChildNeeds = model.ChildNeeds;
                 entity.Age = model.Age;
+                entity.Race = model.Race;
+                entity.Religion = model.Religion;
                 entity.FoodAllergens = (Data.Entities.FoodAllergens)model.FoodAllergens;
                 entity.ModifiedUTC = DateTimeOffset.Now;
 

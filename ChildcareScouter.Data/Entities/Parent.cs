@@ -13,17 +13,12 @@ namespace ChildcareScouter.Data.Entities
         [Key]
         public int ParentID { get; set; }
 
-        //[ForeignKey(nameof(User))]
-        //public string OwnerID { get; set; }
-        //public ApplicationUser User { get; set; }
-
-        [Required]
-        [Column(TypeName = "OwnerID")]
-        public Guid OwnerID { get; set; }
-
         [ForeignKey(nameof(Company))]
         public int CompanyID { get; set; }
         public virtual Company Company { get; set; }
+        
+        [Required]
+        public Guid OwnerID { get; set; }
 
         [Required]
         public double PhoneNumber { get; set; }

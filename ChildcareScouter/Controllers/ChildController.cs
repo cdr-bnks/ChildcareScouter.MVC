@@ -10,11 +10,12 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class ChildController : Controller
     {
         private ChildService CreateChildService()
         {
-            var userID = Guid.Parse(User.Identity.GetUserId()); 
+            var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ChildService(userID);
             return svc;
         }
@@ -34,6 +35,7 @@ namespace ChildcareScouter.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ChildCreate model)
         {
             if (!ModelState.IsValid)
@@ -79,6 +81,7 @@ namespace ChildcareScouter.Controllers
             return View(model);
         }
 
+       
         public ActionResult EditID(int providerID)
         {
             var svc = CreateChildService();

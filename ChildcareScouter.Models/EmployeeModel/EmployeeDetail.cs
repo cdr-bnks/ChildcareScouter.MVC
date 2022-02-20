@@ -26,6 +26,11 @@ namespace ChildcareScouter.Models.EmployeeModel
 
         public int Age { get; set; }
 
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
+
         [Display(Name = "Phone Number")]
         public double PhoneNumber { get; set; }
 

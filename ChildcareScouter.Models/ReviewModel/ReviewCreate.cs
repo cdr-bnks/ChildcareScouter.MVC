@@ -11,11 +11,12 @@ namespace ChildcareScouter.Models.ReviewModel
     {
         [Required]
         public int CareproviderID { get; set; }
+
         [Required]
         public string Report { get; set; }
 
         [Required]
-        public string Descritption { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public int Score { get; set; }

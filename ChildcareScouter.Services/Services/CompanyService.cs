@@ -46,6 +46,7 @@ namespace ChildcareScouter.Services.Services
                 var query = ctx.Companies.Where(e => e.OwnerID == _userID).Select(e => new CompanyListItem
                 {
                     CompanyID = e.CompanyID,
+                   CompanyName = e.CompanyName,
                     Location = e.Location,
                     Price = e.Price,
                     Policy = e.Policy,

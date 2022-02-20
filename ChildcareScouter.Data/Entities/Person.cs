@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace ChildcareScouter.Data.Entities
 {
     public abstract class Person
-    {
-
+    { 
         [Required]
         public string Name { get; set; }
 
@@ -21,5 +20,11 @@ namespace ChildcareScouter.Data.Entities
         
         [Required]
         public int Age { get; set; }
+
+        [Required]
+        public string Race { get; set; }    
+
+        [Required]
+        public string Religion { get; set; }        
     }
 }

@@ -17,6 +17,7 @@
         <dd>
             @Html.DisplayFor(model => model.ParentID)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Parent)
         </dt>
@@ -72,14 +73,24 @@
         <dd>
             @Html.DisplayFor(model => model.Age)
         </dd>
-          <dt>
-            @Html.DisplayNameFor(model => model.FoodAllergens)
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Race)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FoodAllergens)
+            @Html.DisplayFor(model => model.Race)
         </dd>
-          <dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Religion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Religion)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.NumberOfProviders)
         </dt>
 
@@ -106,6 +117,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  ID = Model.ChildID  }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ChildID  }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

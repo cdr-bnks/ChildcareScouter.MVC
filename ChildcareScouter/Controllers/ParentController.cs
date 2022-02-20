@@ -11,10 +11,12 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class ParentController : Controller
     {
         private ParentService CreateParentService()
         {
+
             var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ParentService(userID);
             return svc;
@@ -22,6 +24,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Index()
         {
+            
             var userID = Guid.Parse(User.Identity.GetUserId());
             var svc = new ParentService(userID);
             var model = svc.GetParents();

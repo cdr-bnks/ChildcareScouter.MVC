@@ -13,6 +13,7 @@ namespace ChildcareScouter.Services.Services
     public class ParentService
     {
         private readonly Guid _userID;
+
         public ParentService(Guid userID)
         {
             _userID = userID;
@@ -30,6 +31,8 @@ namespace ChildcareScouter.Services.Services
                 Email = model.Email,
                 Age = model.Age,
                 PhoneNumber = model.PhoneNumber,
+                Race = model.Race,
+                Religion = model.Religion,
                 CreatedUTC = DateTimeOffset.Now,
             };
 
@@ -45,15 +48,18 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Parents.Where(e => e.OwnerID == _userID ).Select(e => new ParentListItem
+                var query = ctx.Parents.Where(e => e.OwnerID == _userID).Select(e => new ParentListItem
                 {
-                    CompanyID = e.Company.CompanyID,
+                    CompanyID= e.Company.CompanyID,
+                    ParentID = e.ParentID,
                     Name = e.Name,
                     DateOfBirth = e.DateOfBirth,
                     IdentifyAs = e.IdentifyAs,
                     Email = e.Email,
                     Age = e.Age,
-                    PhoneNumber = e.PhoneNumber
+                    PhoneNumber = e.PhoneNumber,
+                    Race = e.Race,
+                    Religion = e.Religion
                 });
 
                 return query.ToArray();
@@ -64,16 +70,18 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == iD && e.OwnerID ==_userID );
+                var entity = ctx.Parents.Single(e => e.ParentID == iD && e.OwnerID == _userID);
 
                 return new ParentDetail
                 {
-                    CompanyID = entity.CompanyID,
+                    ParentID = entity.ParentID,
                     Name = entity.Name,
                     IdentifyAs = entity.IdentifyAs,
                     Email = entity.Email,
                     Age = entity.Age,
                     PhoneNumber = entity.PhoneNumber,
+                    Race = entity.Race,
+                    Religion = entity.Religion,
                     CreatedUTC = entity.CreatedUTC,
                     ModifiedUTC = entity.ModifiedUTC
                 };
@@ -84,15 +92,17 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID && e.OwnerID == _userID );
+                var entity = ctx.Parents.Single(e => e.ParentID == model.ParentID && e.OwnerID == _userID);
 
-                entity.CompanyID = model.CompanyID;
+                entity.ParentID = model.ParentID;
                 entity.Name = model.Name;
                 entity.DateOfBirth = model.DateOfBirth;
                 entity.IdentifyAs = model.IdentifyAs;
                 entity.Email = model.Email;
                 entity.Age = model.Age;
                 entity.PhoneNumber = model.PhoneNumber;
+                entity.Race = model.Race;
+                entity.Religion = model.Religion;
                 entity.ModifiedUTC = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
@@ -103,7 +113,7 @@ namespace ChildcareScouter.Services.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Parents.Single(e => e.ParentID == parentID && e.OwnerID == _userID );
+                var entity = ctx.Parents.Single(e => e.ParentID == parentID && e.OwnerID == _userID);
 
                 ctx.Parents.Remove(entity);
 

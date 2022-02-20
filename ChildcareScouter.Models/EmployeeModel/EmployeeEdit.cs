@@ -28,6 +28,11 @@ namespace ChildcareScouter.Models.EmployeeModel
         [Range(18, 89, ErrorMessage ="Required age above 18")]
         public int Age { get; set; }
 
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
+
         [Display(Name = "Phone Number")]
         public double PhoneNumber { get; set; }
 

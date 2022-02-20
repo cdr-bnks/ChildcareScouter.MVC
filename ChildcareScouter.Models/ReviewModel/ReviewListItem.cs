@@ -9,8 +9,6 @@ namespace ChildcareScouter.Models.ReviewModel
 {
     public class ReviewListItem
     {
-        public int CarproviderID { get; set; }
-
         [Display(Name = "Reviews:")]
         public int ReviewID { get; set; }
 

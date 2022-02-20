@@ -28,6 +28,8 @@ namespace ChildcareScouter.Services.Services
                 Email = model.Email,
                 Salary = model.Salary,
                 Age = model.Age,
+                Race = model.Race,
+                Religion = model.Religion,
                 PhoneNumber = model.PhoneNumber,
                 MaritalStatus = (Data.Entities.MaritalStatus)model.MaritalStatus,
                 CreatedUTC = DateTimeOffset.Now
@@ -54,6 +56,8 @@ namespace ChildcareScouter.Services.Services
                     Email = e.Email,
                     Salary = e.Salary,
                     Age = e.Age,
+                    Race = e.Race,
+                    Religion = e.Religion,
                     PhoneNumber = e.PhoneNumber,
                     MaritalStatus = (Models.EmployeeModel.MaritalStatus)e.MaritalStatus,
                     ListOfPositions = e.ListOfPositions.Count,
@@ -99,6 +103,8 @@ namespace ChildcareScouter.Services.Services
                 entity.Email = model.Email;
                 entity.Salary = model.Salary;
                 entity.Age = model.Age;
+                entity.Race = model.Race;
+                entity.Religion = model.Religion;
                 entity.PhoneNumber = model.PhoneNumber;
                 entity.MaritalStatus = (Data.Entities.MaritalStatus)model.MaritalStatus;
                 entity.ModifiedUTC = DateTimeOffset.Now;

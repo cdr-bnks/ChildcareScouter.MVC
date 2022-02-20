@@ -13,7 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ParentID)
-        </th> 
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ParentName)
         </th>
@@ -36,7 +36,10 @@
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FoodAllergens)
+            @Html.DisplayNameFor(model => model.Race)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Religion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NumberOfProviders)
@@ -54,7 +57,8 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ParentName)
-        </td><td>
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ChildID)
         </td>
         <td>
@@ -71,9 +75,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Age)
-        </td> 
+        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FoodAllergens)
+            @Html.DisplayFor(modelItem => item.Race)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Religion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumberOfProviders)
@@ -82,9 +89,9 @@
             @Html.DisplayFor(modelItem => item.CreatedUTC)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  ID=item.ChildID  }) |
-            @Html.ActionLink("Details", "Details", new {  ID=item.ChildID  }) |
-            @Html.ActionLink("Delete", "Delete", new {  ID=item.ChildID  })
+            @Html.ActionLink("Edit", "Edit", new {   id=item.ChildID   }) |
+            @Html.ActionLink("Details", "Details", new {   id=item.ChildID }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.ChildID })
         </td>
     </tr>
 }

@@ -12,12 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CompanyID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LicensedID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.CompanyName)
         </th>
         <th>
@@ -38,12 +32,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CompanyID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LicensedID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CompanyName)
         </td>
         <td>
@@ -59,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.CreatedUTC)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  ID=item.CompanyID  }) |
-            @Html.ActionLink("Details", "Details", new {  ID = item.CompanyID }) |
-            @Html.ActionLink("Delete", "Delete", new { ID = item.CompanyID })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.CompanyID  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.CompanyID   }) |
+            @Html.ActionLink("Delete", "Delete", new {   id=item.CompanyID  })
         </td>
     </tr>
 }

@@ -57,6 +57,7 @@
         <dd>
             @Html.DisplayFor(model => model.FullTime)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.CompanyPrices)
         </dt>
@@ -84,6 +85,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  ID = Model.CareproviderID }) |
+    @Html.ActionLink("Edit", "Edit", new {   id = Model.CareproviderID   }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

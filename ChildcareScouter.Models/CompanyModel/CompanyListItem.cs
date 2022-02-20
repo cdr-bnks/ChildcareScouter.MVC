@@ -11,9 +11,6 @@ namespace ChildcareScouter.Models.CompanyModel
     {
         [Display(Name = "Companies")]
         public int CompanyID { get; set; }
-        
-        [Display(Name ="License#")]
-        public int LicensedID { get; set; }
 
         [Display(Name = "Comapany Name")]
         public string CompanyName { get; set; }

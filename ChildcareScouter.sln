@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildcareScouter.Models", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildcareScouter.Services", "ChildcareScouter.Services\ChildcareScouter.Services.csproj", "{838BB313-6E99-444A-A5DC-BF3D47AB41BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrationsDemo", "MigrationsDemo\MigrationsDemo.csproj", "{F4282709-0AD1-46EA-964C-6F623732D9DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{838BB313-6E99-444A-A5DC-BF3D47AB41BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{838BB313-6E99-444A-A5DC-BF3D47AB41BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{838BB313-6E99-444A-A5DC-BF3D47AB41BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4282709-0AD1-46EA-964C-6F623732D9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4282709-0AD1-46EA-964C-6F623732D9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4282709-0AD1-46EA-964C-6F623732D9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4282709-0AD1-46EA-964C-6F623732D9DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

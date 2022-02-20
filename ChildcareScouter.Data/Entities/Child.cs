@@ -41,12 +41,8 @@ namespace ChildcareScouter.Data.Entities
             ListOfCareProviders = new HashSet<Careprovider>();
         }
 
-        //[ForeignKey(nameof(User))]
-        //public string OwnerID { get; set; }
-        //public ApplicationUser User { get; set; }
 
         [Required]
-        [Column(TypeName ="OwnerID")]
         public Guid OwnerID { get; set; }
 
         [Required]

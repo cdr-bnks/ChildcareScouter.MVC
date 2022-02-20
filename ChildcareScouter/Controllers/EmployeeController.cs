@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private EmployeeService CreateEmployeeService()
@@ -35,7 +36,7 @@ namespace ChildcareScouter.Controllers
         [HttpPost]
         public ActionResult Create(EmployeeCreate model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return View(model);
             }

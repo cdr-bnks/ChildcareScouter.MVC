@@ -19,7 +19,7 @@ namespace ChildcareScouter.Models.CompanyModel
         public string Location { get; set; }
 
         [Required]
-        [Display(Name = "$: Price")]
+        [Display(Name = "Monthly Price  $:")]
         public double Price { get; set; }
 
         [Required]

@@ -36,6 +36,7 @@ namespace ChildcareScouter.Services.Services
                 ctx.Careproviders.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
+            
         }
 
         public bool AddChildToCareprovider(int providerID, int childID)

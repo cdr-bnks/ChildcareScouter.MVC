@@ -5,7 +5,18 @@
 }
 
 <h2>Index</h2>
-
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="..." alt="...">
+            <div class="caption">
+                <h3>Childcare providers</h3>
+                <p>..lorem10.</p>
+                <p><a href="#" class="btn btn-primary" role="button">Website</a> <a href="#" class="btn btn-default" role="button">Maps</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -41,41 +52,49 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CareproviderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProviderName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProviderTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactInfo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildrenEnrolled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Staff)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullTIme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUTC)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  ID=item.CareproviderID }) |
-            @Html.ActionLink("Details", "Details", new { ID = item.CareproviderID }) |
-            @Html.ActionLink("Delete", "Delete", new { ID = item.CareproviderID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareproviderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildrenEnrolled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullTIme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUTC)
+            </td>
+
+            <td>
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-warning">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CareproviderID })
+                    </button>
+                    <button type="button" class="btn btn-success">@Html.ActionLink("Details", "Details", new { id = item.CareproviderID })</button>
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.CareproviderID })</button>
+                </div>
+
+            </td>
+        </tr>
+    }
 
 </table>

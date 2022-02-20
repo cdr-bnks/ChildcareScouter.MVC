@@ -27,6 +27,11 @@ namespace ChildcareScouter.Models.ChildModel
 
         public int Age { get; set; }
 
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
+
         [Display(Name = "Food Allergens")]
         public FoodAllergens FoodAllergens { get; set; }
 

@@ -9,7 +9,6 @@ namespace ChildcareScouter.Models.ParentModel
 {
     public class ParentEdit
     {
-        public int CompanyID { get; set; }
         public int ParentID { get; set; }
 
         public string Name { get; set; }
@@ -26,5 +25,10 @@ namespace ChildcareScouter.Models.ParentModel
 
         [Display(Name="Phone Number")]
         public double PhoneNumber { get; set; }
+
+        [Display(Name = "Ethnicity")]
+        public string Race { get; set; }
+
+        public string Religion { get; set; }
     }
 }

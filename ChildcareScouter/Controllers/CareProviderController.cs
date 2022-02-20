@@ -11,19 +11,21 @@ using System.Web.Mvc;
 
 namespace ChildcareScouter.Controllers
 {
+    [Authorize]
     public class CareproviderController : Controller
     {
-        private CareproviderService CreateCareporviderService( )
+
+        private CareproviderService CreateCareproviderService()
         {
-            var userID =  Guid.Parse(User.Identity.GetUserId());
-            var svc = new CareproviderService(userID );
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var svc =  new CareproviderService(userID);
             return svc;
         }
 
-        public ActionResult Index( )
+        public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var svc = new CareproviderService(userID);
+            var svc =  new CareproviderService(userID);
             var model = svc.GetCareprovider();
             return View(model);
         }
@@ -34,13 +36,14 @@ namespace ChildcareScouter.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CareproviderCreate model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
 
             if (svc.CreateCareprovider(model))
             {
@@ -54,7 +57,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Details(int iD)
         {
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
             var model = svc.GetCareproviderByID(iD);
 
             return View(model);
@@ -62,7 +65,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Edit(int iD)
         {
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
             var detail = svc.GetCareproviderByID(iD);
 
             var model = new CareproviderEdit
@@ -76,8 +79,6 @@ namespace ChildcareScouter.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditProviderIDAndChildID(int providerID, int childID, Careprovider model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -87,7 +88,7 @@ namespace ChildcareScouter.Controllers
                 ModelState.AddModelError("", "ID# does match and does not exist");
                 return View(model);
             }
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
             
             if (!svc.AddChildToCareprovider(providerID, childID))
             {
@@ -99,7 +100,7 @@ namespace ChildcareScouter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int iD, CareproviderEdit model, int provID , int childID)
+        public ActionResult Edit(int iD, CareproviderEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -109,9 +110,9 @@ namespace ChildcareScouter.Controllers
                 return View(model);
             }
 
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
 
-            if (svc.UpdateCareprovider(model) && svc.AddChildToCareprovider(provID, childID))
+            if (svc.UpdateCareprovider(model))
             {
                 TempData["SaveResult"] = "Your Provider was successfully updated.";
                 return RedirectToAction("Index");
@@ -124,7 +125,7 @@ namespace ChildcareScouter.Controllers
 
         public ActionResult Delete(int iD)
         {
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
             var model = svc.GetCareproviderByID(iD);
 
             return View(model);
@@ -135,7 +136,7 @@ namespace ChildcareScouter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int iD)
         {
-            var svc = CreateCareporviderService();
+            var svc = CreateCareproviderService();
 
             svc.DeleteCareprovider(iD);
             TempData["SaveResult"] = "The provider has been successfully deleted from the databsae.";

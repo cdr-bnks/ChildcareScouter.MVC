@@ -9,8 +9,9 @@ namespace ChildcareScouter.Models.CareproviderModel
 {
     public class CareproviderListItem
     {
-        public int CareproviderID { get; set; }
         public int CompanyID { get; set; }
+        
+        public int CareproviderID { get; set; }
 
         [Display(Name = "Provider Name")]
         public string ProviderName { get; set; }
