@@ -76,7 +76,9 @@ namespace ChildcareScouter.Controllers
                 IdentifyAs = detail.IdentifyAs,
                 Email = detail.Email,
                 Age = detail.Age,
-                PhoneNumber = detail.PhoneNumber
+                PhoneNumber = detail.PhoneNumber,
+                Race = detail.Race,
+                Religion = detail.Religion,
             };
 
             return View(model);

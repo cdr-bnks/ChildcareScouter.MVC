@@ -74,8 +74,10 @@ namespace ChildcareScouter.Services.Services
 
                 return new ParentDetail
                 {
+                    CompanyID = entity.CompanyID,
                     ParentID = entity.ParentID,
                     Name = entity.Name,
+                    DateOfBirth = entity.DateOfBirth,
                     IdentifyAs = entity.IdentifyAs,
                     Email = entity.Email,
                     Age = entity.Age,

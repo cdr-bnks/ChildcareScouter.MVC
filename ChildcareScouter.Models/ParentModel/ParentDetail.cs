@@ -33,7 +33,7 @@ namespace ChildcareScouter.Models.ParentModel
 
         public string Religion { get; set; }
 
-        [Display(Name = "")]
+        [Display(Name = "Created")]
         public DateTimeOffset CreatedUTC { get; set; }
 
         [Display(Name = "Modified")]
